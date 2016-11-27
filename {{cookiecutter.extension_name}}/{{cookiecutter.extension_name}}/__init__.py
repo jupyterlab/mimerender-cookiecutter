@@ -7,3 +7,11 @@ def _jupyter_labextension_paths():
         'name': '{{ cookiecutter.extension_name }}',
         'src': 'static',
     }]
+
+def _jupyter_nbextension_paths():
+    return [{
+        'section': 'notebook',
+        'src': 'static',
+        'dest': '{{ cookiecutter.extension_name }}',
+        'require': '{{ cookiecutter.extension_name }}/extension'
+    }]

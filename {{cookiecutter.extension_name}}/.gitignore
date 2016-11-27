@@ -1,5 +1,14 @@
-*.bundle.*
-lib/
-node_modules/
+labextension/lib/
+nbextension/lib/
+*/node_modules/
+npm-debug.log
 *.egg-info/
-*/__pycache__/*
+build/
+dist/
+
+# Compiled javascript
+{{ cookiecutter.extension_name }}/__pycache__/
+{{ cookiecutter.extension_name }}/static/
+
+# OS X
+.DS_Store
