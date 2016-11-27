@@ -1,7 +1,16 @@
 # mimerender-cookiecutter
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
-a JupyterLab and Jupyter Notebook extension for rendering specific mime types. See [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json) for an example implementation using this cookiecutter.
+a JupyterLab and Jupyter Notebook extension for rendering specific mime types.
+
+## Examples
+
+* [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json)
+* [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
+
+## Branches
+
+* [React](https://github.com/jupyterlab/mimerender-cookiecutter/tree/react)
 
 ## Usage
 
@@ -30,15 +39,13 @@ The cookiecutter will prompt you with the following questions and generate a pro
 
 ## Project structure
 
-The project is divided into 3 top-level directories, one for each extension (lab and notebook) and one for the React component(s). 
+The project is divided into 2 top-level directories, one for each extension (lab and notebook). 
 
-In most cases, you will only need to edit the contents of the `component` directory. When building the Javascript, the `/component` directory will be copied to the `src` directory of both extensions and then the Javascript in the `src` directories will be built using webpack and output in `extension_name/static`. 
+In most cases, you will only need to edit the `OutputWidget._render` method in `labextension/src/output.js` (for rendering output data of a specific mime type) and the `DocWidget.onUpdateRequest` method in `labextension/src/doc.js` (if your extension should open files of a specific extension). 
 
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
-  * `component`: The React component(s)
-    * `index.js`: Entry point for React component(s)
   * `labextension`: The Jupyter Lab extension
     * `src`
       * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts

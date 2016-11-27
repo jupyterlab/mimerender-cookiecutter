@@ -1,8 +1,5 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Component from './component';
 
 /**
  * The class name added to a JSON widget.
@@ -36,7 +33,6 @@ export class DocWidget extends Widget {
   dispose() {
     if (!this.isDisposed) {
       this._context = null;
-      ReactDOM.unmountComponentAtNode(this.node);
       super.dispose();
     }
   }
@@ -49,7 +45,8 @@ export class DocWidget extends Widget {
     if (this.isAttached) {
       let content = this._context.model.toString();
       let json = content ? JSON.parse(content) : {};
-      ReactDOM.render(<Component data={json} />, this.node);
+      let text = document.createTextNode(JSON.stringify(json));
+      this.node.appendChild(text);
     }
   }
 

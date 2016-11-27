@@ -1,7 +1,4 @@
 import { Widget } from 'phosphor/lib/ui/widget';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Component from './component';
 
 const WIDGET_CLASS = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
@@ -28,7 +25,7 @@ export class OutputWidget extends Widget {
    * A message handler invoked on an `'before-detach'` message.
    */
   onBeforeDetach(msg) {
-    ReactDOM.unmountComponentAtNode(this.node);
+    
   }
 
   /**
@@ -36,7 +33,8 @@ export class OutputWidget extends Widget {
    */
   _render() {
     let json = this._source;
-    ReactDOM.render(<Component data={json} />, this.node);
+    let text = document.createTextNode(JSON.stringify(json));
+    this.node.appendChild(text);
   }
 
 }

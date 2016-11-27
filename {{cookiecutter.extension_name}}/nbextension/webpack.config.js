@@ -1,4 +1,3 @@
-var path = require('path');
 var version = require('./package.json').version;
 
 // Custom webpack loaders are generally the same for all webpack bundles, hence
@@ -13,7 +12,7 @@ var loaders = [
         exclude: /node_modules/, 
         loader: 'babel-loader',
         query: {
-            presets: ['latest', 'stage-0', 'react']
+            presets: ['latest']
         }
     },
     {

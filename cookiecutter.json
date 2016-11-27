@@ -2,7 +2,7 @@
     "author_name": "",
     "author_email": "",
     "mime_type": "application/json",
-    "mime_short_name": "JSONTable",
-    "file_extension": "json",
+    "mime_short_name": "JSON",
+    "file_extension": "",
     "extension_name": "jupyerlab_json"
 }

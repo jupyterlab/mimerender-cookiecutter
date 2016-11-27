@@ -1,6 +1,6 @@
 import { IRenderMime } from 'jupyterlab/lib/rendermime';
 import { IDocumentRegistry } from 'jupyterlab/lib/docregistry';
-import { OutputRenderer } from './renderer';
+import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';
 import './index.css';
 

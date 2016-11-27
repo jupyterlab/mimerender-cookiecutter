@@ -1,14 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Component = require('./component').default;
-
 var MIME_TYPE = '{{cookiecutter.mime_type}}';
 
 //
 // Render data to the output area
 // 
 function render(data, node) {
-    ReactDOM.render(<Component data={data} />, node);
+    var text = document.createTextNode(JSON.stringify(data));
+    node.appendChild(text);
 }
 
 //
