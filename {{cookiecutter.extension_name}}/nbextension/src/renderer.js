@@ -1,3 +1,5 @@
+require('./index.css');
+
 var MIME_TYPE = '{{cookiecutter.mime_type}}';
 
 //
