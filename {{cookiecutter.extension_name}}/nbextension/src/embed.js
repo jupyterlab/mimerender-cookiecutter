@@ -4,4 +4,4 @@
 // dynamic baseURL for the static assets and may load some css that would
 // already be loaded by the notebook otherwise.
 
-export { version } '../package.json';
+export { version } from '../package.json';
