@@ -1,10 +1,13 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 
+/**
+ * The class name added to this OutputWidget.
+ */
 const WIDGET_CLASS = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
 
 /**
- * A widget for displaying HTML and rendering math.
+ * A widget for rendering {{cookiecutter.mime_short_name}}.
  */
 export class OutputWidget extends Widget {
 

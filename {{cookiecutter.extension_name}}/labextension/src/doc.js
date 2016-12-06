@@ -2,19 +2,16 @@ import { Widget } from 'phosphor/lib/ui/widget';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
 
 /**
- * The class name added to a JSON widget.
+ * The class name added to a DocWidget.
  */
 const WIDGET_CLASS = 'jp-{{cookiecutter.mime_short_name}}Widget';
 
 
 /**
- * A base JSON widget class.
+ * A widget for rendering {{cookiecutter.extension_name}} files.
  */
 export class DocWidget extends Widget {
 
-  /**
-   * Construct a new map widget.
-   */
   constructor(context) {
     super();
     this._context = context;
@@ -61,13 +58,10 @@ export class DocWidget extends Widget {
 
 
 /**
- * A widget factory for maps.
+ * A widget factory for DocWidget.
  */
 export class DocWidgetFactory extends ABCWidgetFactory {
 
-  /**
-   * Construct a new widget fatory.
-   */
   constructor(options) {
     super(options);
   }
