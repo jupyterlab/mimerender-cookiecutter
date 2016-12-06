@@ -37,6 +37,10 @@ module.exports = [
             path: '../{{cookiecutter.extension_name}}/static',
             libraryTarget: 'amd'
         },
+        devtool: 'source-map',
+        module: {
+            loaders: loaders,
+        },
         externals: [
             'nbextensions/{{cookiecutter.extension_name}}/index',
             'jquery'
