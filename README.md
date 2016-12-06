@@ -1,7 +1,7 @@
 # mimerender-cookiecutter
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
-a JupyterLab and Jupyter Notebook extension for rendering specific mime types.
+a Jupyter Lab and Jupyter Notebook extension for rendering specific mime types and file extensions.
 
 ## Examples
 
@@ -34,14 +34,14 @@ The cookiecutter will prompt you with the following questions and generate a pro
 * `author_email`: Your email address. This will be used in the generated Python and npm packages.
 * `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`). This will be used to render output data of this mime type with your extension.
 * `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `JSONTable`). This will be used in the generated Python and npm packages, README, and class names.
-* `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `xml`). This will be used to open files of this type with your extension.
+* `file_extension`: A valid file extension excluding the leading dot (e.g. `json`, `table.json`). This will be used to render files of this type with your extension. **_Optional and supported in Jupyter Lab only_** 
 * `extension_name`: Your Jupyter Lab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
 
 ## Project structure
 
 The project is divided into 2 top-level directories, one for each extension (lab and notebook). 
 
-In most cases, you will only need to edit the `OutputWidget._render` method in `labextension/src/output.js` (for rendering output data of a specific mime type) and the `DocWidget.onUpdateRequest` method in `labextension/src/doc.js` (if your extension should open files of a specific extension). 
+In most cases, you will only need to edit the `OutputWidget._render` method in `labextension/src/output.js` (for rendering output data of a specific mime type) and the `DocWidget.onUpdateRequest` method in `labextension/src/doc.js` (if your extension should render files of a specific type). 
 
 * `extension_name`
   * `extension_name`: The Python package
@@ -61,4 +61,4 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
 
 ## Package names  
 
-We suggest that simple extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.
+We suggest that extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.

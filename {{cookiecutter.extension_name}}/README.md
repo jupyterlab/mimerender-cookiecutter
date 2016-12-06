@@ -2,6 +2,8 @@
 
 A Jupyter Lab and Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
 
+![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
+
 ## Prerequisites
 
 * JupyterLab >=0.8.0 and/or Notebook >=4.3
@@ -9,8 +11,6 @@ A Jupyter Lab and Jupyter Notebook extension for rendering {{cookiecutter.mime_s
 ## Usage
 
 To render [JSON-able dict or list](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html#IPython.display.JSON) in IPython as a tree:
-
-![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
 
 ```python
 from IPython.display import JSON
@@ -28,7 +28,7 @@ To render a JSON file as a tree, simply open it:
 
 ![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
 
-## Installation
+## Install
 
 To install using pip:
 
