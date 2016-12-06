@@ -2,7 +2,7 @@
   "private": true,
   "name": "{{cookiecutter.extension_name}}_labextension",
   "version": "0.1.0",
-  "description": "A Jupyter Lab extension for rendering {{cookiecutter.mime_short_name}}",
+  "description": "A JupyterLab extension for rendering {{cookiecutter.mime_short_name}}",
   "author": "Grant Nestor",
   "main": "lib/plugin.js",
   "keywords": [

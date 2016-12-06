@@ -34,8 +34,9 @@ The cookiecutter will prompt you with the following questions and generate a pro
 * `author_email`: Your email address. This will be used in the generated Python and npm packages.
 * `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`). This will be used to render output data of this mime type with your extension.
 * `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `JSONTable`). This will be used in the generated Python and npm packages, README, and class names.
-* `file_extension`: A valid file extension excluding the leading dot (e.g. `json`, `table.json`). This will be used to render files of this type with your extension. **_Optional and supported in Jupyter Lab only_** 
-* `extension_name`: Your Jupyter Lab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
+* `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `xml`). This will be used to open files of this type with your extension.
+* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
+>>>>>>> Replace "Jupyter Lab" with "JupyterLab"
 
 ## Project structure
 
@@ -46,11 +47,11 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
-  * `labextension`: The Jupyter Lab extension
+  * `labextension`: The JupyterLab extension
     * `src`
       * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts
       * `index.css`: CSS styles for extension
-      * `plugin.js`: Entry point for the Jupyter Lab extension
+      * `plugin.js`: Entry point for the JupyterLab extension
       * `output.js`: Widget/widget factory for rendering outputs of `mime_type` defined in prompts
   * `nbextension`: The Jupyter Notebook extension
     * `src`
