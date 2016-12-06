@@ -1,7 +1,7 @@
 # mimerender-cookiecutter
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
-a Jupyter Lab and Jupyter Notebook extension for rendering specific mime types and file extensions.
+a JupyterLab and Jupyter Notebook extension for rendering specific mime types and file extensions.
 
 ## Examples
 
