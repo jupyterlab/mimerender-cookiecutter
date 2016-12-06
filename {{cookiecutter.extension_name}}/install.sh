@@ -9,7 +9,7 @@ if [ $? -eq 0 ]; then
     echo pip is installed
 else
     echo "'pip --version' failed, therefore pip is not installed. In order to perform
-    a developer install of ipywidgets you must have both pip and npm installed on
+    a developer install of {{cookiecutter.extension_name}} you must have pip installed on
     your machine! See https://packaging.python.org/installing/ for installation instructions."
     exit 1
 fi
@@ -26,9 +26,10 @@ if [ $? -eq 0 ]; then
     fi
     jupyter labextension enable --py $nbExtFlags {{cookiecutter.extension_name}}
 else
-    echo "'jupyter lab --version' failed, therefore jupyter lab is not installed. In order to
-    perform a developer install of {{cookiecutter.extension_name}} you must have jupyter lab on
-    your machine! Install using 'pip install jupyterlab' or follow instructions at https://github.com/jupyterlab/jupyterlab/blob/master/CONTRIBUTING.md#installing-jupyterlab for developer install."
+    echo "'jupyter lab --version' failed, therefore jupyter lab is not installed. In
+    order to perform a developer install of {{cookiecutter.extension_name}} you must
+    have jupyter lab on your machine! Install using 'pip install jupyterlab' or
+    follow instructions at https://github.com/jupyterlab/jupyterlab/blob/master/CONTRIBUTING.md#installing-jupyterlab for developer install."
 fi
 
 jupyter notebook --version
@@ -41,7 +42,10 @@ if [ $? -eq 0 ]; then
     fi
     jupyter nbextension enable --py $nbExtFlags {{cookiecutter.extension_name}}
 else
-    echo "'jupyter notebook --version' failed, therefore jupyter notebook is not installed. In order to
-    perform a developer install of {{cookiecutter.extension_name}} you must have jupyter notebook on
-    your machine! Install using 'pip install notebook' or follow instructions at https://github.com/jupyter/notebook/blob/master/CONTRIBUTING.rst#installing-the-jupyter-notebook for developer install."
+    echo "'jupyter notebook --version' failed, therefore jupyter notebook is not
+    installed. In order to perform a developer install of
+    {{cookiecutter.extension_name}} you must have jupyter notebook on your machine!
+    Install using 'pip install notebook' or follow instructions at
+    https://github.com/jupyter/notebook/blob/master/CONTRIBUTING.rst#installing-the-jupyter-notebook
+    for developer install."
 fi
