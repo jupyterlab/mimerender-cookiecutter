@@ -4,7 +4,7 @@ A Jupyter Lab extension for rendering {{cookiecutter.mime_short_name}} output an
 
 ## Prerequisites
 
-* JupyterLab >=0.8.0
+* JupyterLab >= 0.11
 
 ## Usage
 
