@@ -1,16 +1,16 @@
 # {{cookiecutter.extension_name}}
 
-A Jupyter Lab and Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
+A JupyterLab and Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}} data
 
 ![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
 
 ## Prerequisites
 
-* JupyterLab >=0.8.0 and/or Notebook >=4.3
+* JupyterLab >=0.11.0 and/or Notebook >=4.3
 
 ## Usage
 
-To render [JSON-able dict or list](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html#IPython.display.JSON) in IPython as a tree:
+To render {{cookiecutter.mime_short_name}} output in IPython:
 
 ```python
 from IPython.display import JSON
@@ -24,7 +24,7 @@ JSON({
 })
 ```
 
-To render a JSON file as a tree, simply open it:
+To render a .{{cookiecutter.file_extension}} file as a tree, simply open it:
 
 ![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
 
@@ -68,7 +68,7 @@ To install the Python package:
 pip install -e .
 ```
 
-To install the extension for Jupyter Lab:
+To install the extension for JupyterLab:
 
 ```bash
 jupyter labextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}
