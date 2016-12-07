@@ -4,24 +4,22 @@
 
 // Configure requirejs
 if (window.require) {
-    window.require.config({
-        map: {
-            "*" : {
-                "{{cookiecutter.extension_name}}": "nbextensions/{{cookiecutter.extension_name}}/index"
-            }
-        }
-    });
+  window.require.config({
+    map: {
+      '*': {
+        '{{cookiecutter.extension_name}}': 'nbextensions/{{cookiecutter.extension_name}}/index'
+      }
+    }
+  });
 }
 
 // Export the required load_ipython_extention
-module.exports = {
-    load_ipython_extension: function() {
-        define([
-            "nbextensions/{{cookiecutter.extension_name}}/index",
-            "jquery"
-        ], function(Extension, $) {
-            Extension.register_renderer($);
-            Extension.render_cells($);
-        });
-    }
+export function load_ipython_extension() {
+  define([
+    'nbextensions/{{cookiecutter.extension_name}}/index',
+    'jquery'
+  ], (Extension, $) => {
+    Extension.register_renderer($);
+    Extension.render_cells($);
+  });
 };

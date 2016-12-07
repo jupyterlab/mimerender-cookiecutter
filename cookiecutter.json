@@ -3,6 +3,6 @@
     "author_email": "",
     "mime_type": "application/json",
     "mime_short_name": "JSON",
-    "file_extension": "",
-    "extension_name": "jupyerlab_json"
+    "file_extension": "json",
+    "extension_name": "jupyterlab_json"
 }

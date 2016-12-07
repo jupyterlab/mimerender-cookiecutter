@@ -1,0 +1,4 @@
+div.output_subarea, .output_{{cookiecutter.mime_short_name}}, .rendered_html {
+  padding: 0.4em 0;
+  max-width: 100%;
+}

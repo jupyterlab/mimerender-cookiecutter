@@ -31,7 +31,7 @@ The cookiecutter will prompt you with the following questions and generate a pro
 * `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`). This will be used to render output data of this mime type with your extension.
 * `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `JSONTable`). This will be used in the generated Python and npm packages, README, and class names.
 * `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `xml`). This will be used to open files of this type with your extension.
-* `extension_name`: Your Jupyter Lab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
+* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
 
 ## Project structure
 
@@ -59,4 +59,4 @@ In most cases, you will only need to edit the contents of the `component` direct
 
 ## Package names  
 
-We suggest that simple extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.
+We suggest that extension names start with `jupyterlab_` and use underscores if needed to improve readability, such as `jupyterlab_myextension`.
