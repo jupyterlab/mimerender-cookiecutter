@@ -32,7 +32,7 @@ The cookiecutter will prompt you with the following questions and generate a pro
   
 * `author_name`: Your full name. This will be used in the generated Python and npm packages.
 * `author_email`: Your email address. This will be used in the generated Python and npm packages.
-* `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`). This will be used to render output data of this mime type with your extension.
+* `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`, `application/vnd.plotly.v1+json`). This will be used to render output data of this mime type with your extension.
 * `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `JSONTable`). This will be used in the generated Python and npm packages, README, and class names.
 * `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `xml`). This will be used to open files of this type with your extension.
 * `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
@@ -46,6 +46,7 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
+    * `__init.py__`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
   * `labextension`: The JupyterLab extension
     * `src`
       * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts

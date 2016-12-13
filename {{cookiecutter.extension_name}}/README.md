@@ -13,15 +13,18 @@ A JupyterLab and Jupyter Notebook extension for rendering {{cookiecutter.mime_sh
 To render {{cookiecutter.mime_short_name}} output in IPython:
 
 ```python
-from IPython.display import JSON
-JSON({
+from {{ cookiecutter.extension_name }} import {{ cookiecutter.mime_short_name }}
+
+data = {
     'string': 'string',
     'array': [1, 2, 3],
     'bool': True,
     'object': {
         'foo': 'bar'
     }
-})
+}
+
+{{ cookiecutter.mime_short_name }}(data)
 ```
 
 To render a .{{cookiecutter.file_extension}} file as a tree, simply open it:
