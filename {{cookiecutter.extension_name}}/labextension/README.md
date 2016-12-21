@@ -4,33 +4,7 @@ A JupyterLab extension for rendering {{cookiecutter.mime_short_name}} output and
 
 ## Prerequisites
 
-<<<<<<< 0b7cfde46b61523e30d557319e0b6ea2ce3dd35f
-* JupyterLab >= 0.11
-=======
-* JupyterLab >=0.11.0
->>>>>>> Replace "Jupyter Lab" with "JupyterLab"
-
-## Usage
-
-To render {{cookiecutter.mime_short_name}} output in IPython:
-
-![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
-
-```python
-from IPython.display import JSON
-JSON({
-    'string': 'string',
-    'array': [1, 2, 3],
-    'bool': True,
-    'object': {
-        'foo': 'bar'
-    }
-})
-```
-
-To render a .{{cookiecutter.file_extension}} file as a tree, simply open it:
-
-![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
+* `jupyterlab>=0.11`
 
 ## Development
 
