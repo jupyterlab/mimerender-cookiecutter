@@ -4,25 +4,7 @@ A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}} outp
 
 ## Prerequisites
 
-* Notebook >=4.3
-
-## Usage
-
-To render {{cookiecutter.mime_short_name}} output in IPython:
-
-![screenshot](http://g.recordit.co/oKTa52HTK9.gif)
-
-```python
-from IPython.display import JSON
-JSON({
-    'string': 'string',
-    'array': [1, 2, 3],
-    'bool': True,
-    'object': {
-        'foo': 'bar'
-    }
-})
-```
+* `notebook>=4.3`
 
 ## Development
 
