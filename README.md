@@ -28,10 +28,10 @@ The cookiecutter will prompt you with the following questions and generate a pro
   
 * `author_name`: Your full name. This will be used in the generated Python and npm packages.
 * `author_email`: Your email address. This will be used in the generated Python and npm packages.
-* `mime_type`: A valid mime type (e.g. `application/json`, `application/table-schema+json`, `application/vnd.plotly.v1+json`). This will be used to render output data of this mime type with your extension.
-* `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `JSONTable`). This will be used in the generated Python and npm packages, README, and class names.
+* `mime_type`: A valid mime type (e.g. `application/json`, `application/geo+json`, `application/vnd.plotly.v1+json`). This will be used to render output data of this mime type with your extension.
+* `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `GeoJSON`). This will be used in the generated Python and npm packages, README, and class names.
 * `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `xml`). This will be used to open files of this type with your extension.
-* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_table`).
+* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_geojson`).
 
 ## Project structure
 
