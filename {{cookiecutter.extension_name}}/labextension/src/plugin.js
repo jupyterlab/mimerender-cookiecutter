@@ -12,8 +12,9 @@ import './index.css';
 function activatePlugin(app, rendermime, registry) {
 
   /**
-   * Calculate the index of the renderer in relation to other renderers
-   * or simply pass an integer such as 0, 1, or -1 (for last).
+   * Calculate the index of the renderer in the array renderers (e.g. Insert 
+   * this renderer after any renderers with mime type that matches "+json") 
+   * or simply pass an integer such as 0.
    */
   // const index = findLastIndex(toArray(rendermime.mimetypes()), mimetype => mimetype.endsWith('+json')) + 1;
   const index = 0;
