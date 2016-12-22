@@ -46,12 +46,12 @@ export class OutputWidget extends Widget {
 export class OutputRenderer {
 
   /**
-   * The mimetypes this OutputRenderer accepts.
+   * The mime types this OutputRenderer accepts.
    */
   mimetypes = ['{{cookiecutter.mime_type}}'];
 
   /**
-   * Whether the input can safely sanitized for a given mimetype.
+   * Whether the input can safely sanitized for a given mime type.
    */
   isSanitizable(mimetype) {
     return this.mimetypes.indexOf(mimetype) !== -1;
