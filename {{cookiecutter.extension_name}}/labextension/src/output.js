@@ -3,7 +3,7 @@ import { Widget } from 'phosphor/lib/ui/widget';
 /**
  * The class name added to this OutputWidget.
  */
-const WIDGET_CLASS = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
+const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
 
 /**
@@ -13,7 +13,7 @@ export class OutputWidget extends Widget {
 
   constructor(options) {
     super();
-    this.addClass(WIDGET_CLASS);
+    this.addClass(CLASS_NAME);
     this._source = options.source;
   }
 

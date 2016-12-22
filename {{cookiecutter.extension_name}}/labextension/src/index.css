@@ -3,7 +3,15 @@
   Distributed under the terms of the Modified BSD License. 
 */
 
-.jp-{{cookiecutter.mime_short_name}}Widget {
+.jp-OutputWidget{{cookiecutter.mime_short_name}}, .jp-DocWidget{{cookiecutter.mime_short_name}} {
   padding: 0 10px;
   overflow-y: scroll;
+}
+
+.jp-OutputWidget{{cookiecutter.mime_short_name}} {
+  
+}
+
+.jp-DocWidget{{cookiecutter.mime_short_name}} {
+  
 }
