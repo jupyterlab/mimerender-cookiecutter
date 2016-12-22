@@ -38,7 +38,7 @@ export function register_renderer($) {
   // Register the mime type and append_mime_type function with the notebook's OutputArea
   OutputArea.register_mime_type(MIME_TYPE, append_mime, {
     // Is output safe?
-    safe: false,
+    safe: true,
     // Index of renderer in `OutputArea.display_order`
     index: index
   });
