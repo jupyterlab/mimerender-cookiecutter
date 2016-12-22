@@ -1,6 +1,7 @@
 import './index.css';
 
 const MIME_TYPE = '{{cookiecutter.mime_type}}';
+const CLASS_NAME = 'output_{{cookiecutter.mime_short_name}} rendered_html';
 
 //
 // Render data to the output area
@@ -19,7 +20,7 @@ export function register_renderer($) {
   // A function to render output of '{{cookiecutter.mime_type}}' mime type
   const append_mime = function(json, md, element) {
     const type = MIME_TYPE;
-    const toinsert = this.create_output_subarea(md, 'output_{{cookiecutter.mime_short_name}} rendered_html', type);
+    const toinsert = this.create_output_subarea(md, CLASS_NAME, type);
     this.keyboard_manager.register_events(toinsert);
     render(json, toinsert[0]);
     element.append(toinsert);
