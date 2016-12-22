@@ -7,7 +7,7 @@ import Component from './component';
 /**
  * The class name added to this DocWidget.
  */
-const WIDGET_CLASS = 'jp-{{cookiecutter.mime_short_name}}Widget';
+const CLASS_NAME = 'jp-DocWidget{{cookiecutter.mime_short_name}}';
 
 
 /**
@@ -18,7 +18,7 @@ export class DocWidget extends Widget {
   constructor(context) {
     super();
     this._context = context;
-    this.addClass(WIDGET_CLASS);
+    this.addClass(CLASS_NAME);
     context.model.contentChanged.connect(() => {
       this.update();
     });
