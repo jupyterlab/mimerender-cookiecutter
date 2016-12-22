@@ -6,7 +6,7 @@ import Component from './component';
 /**
  * The class name added to this OutputWidget.
  */
-const WIDGET_CLASS = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
+const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
 
 /**
@@ -16,7 +16,7 @@ export class OutputWidget extends Widget {
 
   constructor(options) {
     super();
-    this.addClass(WIDGET_CLASS);
+    this.addClass(CLASS_NAME);
     this._source = options.source;
   }
 
@@ -48,12 +48,12 @@ export class OutputWidget extends Widget {
 export class OutputRenderer {
 
   /**
-   * The mimetypes this OutputRenderer accepts.
+   * The mime types this OutputRenderer accepts.
    */
   mimetypes = ['{{cookiecutter.mime_type}}'];
 
   /**
-   * Whether the input can safely sanitized for a given mimetype.
+   * Whether the input can safely sanitized for a given mime type.
    */
   isSanitizable(mimetype) {
     return this.mimetypes.indexOf(mimetype) !== -1;
