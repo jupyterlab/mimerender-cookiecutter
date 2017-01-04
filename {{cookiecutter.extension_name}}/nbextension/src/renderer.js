@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {{cookiecutter.mime_short_name}} from './component';
+import {{cookiecutter.mime_short_name}} from '../component';
 import './index.css';
 
 const MIME_TYPE = '{{cookiecutter.mime_type}}';

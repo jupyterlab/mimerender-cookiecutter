@@ -20,10 +20,22 @@ buildExtension({
           exclude: /node_modules/, 
           loader: 'babel-loader',
           query: {
-            presets: ['latest', 'stage-0', 'react']
+            // presets: ['latest', 'stage-0', 'react']
+            presets: [
+              require.resolve('babel-preset-latest'), 
+              require.resolve('babel-preset-stage-0'), 
+              require.resolve('babel-preset-react')
+            ]
           }
         }
       ]
+    },
+    resolve: {
+      root: [path.resolve('.'), path.resolve('../component')],      
+      fallback: path.resolve('node_modules')
+    },
+    resolveLoader: {
+      root: [path.resolve('node_modules')]
     }
   }
 });
