@@ -2,7 +2,7 @@ import { Widget } from 'phosphor/lib/ui/widget';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Component from './component';
+import {{cookiecutter.mime_short_name}} from './component';
 
 /**
  * The class name added to this DocWidget.
@@ -46,7 +46,7 @@ export class DocWidget extends Widget {
     if (this.isAttached) {
       let content = this._context.model.toString();
       let json = content ? JSON.parse(content) : {};
-      ReactDOM.render(<Component data={json} />, this.node);
+      ReactDOM.render(<{{cookiecutter.mime_short_name}} data={json} />, this.node);
     }
   }
 
