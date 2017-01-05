@@ -1,4 +1,5 @@
 var buildExtension = require('@jupyterlab/extension-builder').buildExtension;
+var path = require('path');
 
 buildExtension({
   name: '{{cookiecutter.extension_name}}',
@@ -20,7 +21,6 @@ buildExtension({
           exclude: /node_modules/, 
           loader: 'babel-loader',
           query: {
-            // presets: ['latest', 'stage-0', 'react']
             presets: [
               require.resolve('babel-preset-latest'), 
               require.resolve('babel-preset-stage-0'), 

@@ -1,4 +1,5 @@
 var version = require('./package.json').version;
+var path = require('path');
 
 // Custom webpack loaders are generally the same for all webpack bundles, hence
 // stored in a separate local variable.
@@ -8,7 +9,6 @@ var loaders = [
     exclude: /node_modules/,
     loader: 'babel-loader',
     query: {
-      // presets: ['latest', 'stage-0', 'react']
       presets: [
         require.resolve('babel-preset-latest'),
         require.resolve('babel-preset-stage-0'),
