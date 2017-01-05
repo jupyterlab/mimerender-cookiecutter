@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "webpack",
-    "watch": "watch \"npm run build\" src --wait 10 --ignoreDotFiles",
+    "watch": "watch \"npm run build\" src ../component --wait 10 --ignoreDotFiles",
     "prepublish": "npm run build",
     "extension:install": "jupyter nbextension install --symlink --py --sys-prefix notebook_json",
     "extension:uninstall": "jupyter nbextension uninstall --py --sys-prefix notebook_json",

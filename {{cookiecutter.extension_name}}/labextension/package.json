@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "node build_extension.js",
-    "watch": "watch \"npm run build\" src --wait 10 --ignoreDotFiles",
+    "watch": "watch \"npm run build\" src ../component --wait 10 --ignoreDotFiles",
     "prepublish": "npm run build",
     "extension:install": "jupyter labextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}",
     "extension:uninstall": "jupyter labextension uninstall --py --sys-prefix {{cookiecutter.extension_name}}",
