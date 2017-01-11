@@ -1,4 +1,5 @@
 var buildExtension = require('@jupyterlab/extension-builder').buildExtension;
+var path = require('path');
 
 buildExtension({
   name: '{{cookiecutter.extension_name}}',
@@ -17,7 +18,7 @@ buildExtension({
         { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.js$/,
-          exclude: /node_modules/, 
+          exclude: /node_modules(?!\/{{cookiecutter.extension_name}}_react)/,
           loader: 'babel-loader',
           query: {
             presets: ['latest', 'stage-0', 'react']

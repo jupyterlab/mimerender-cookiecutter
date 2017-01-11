@@ -1,7 +1,7 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {{cookiecutter.mime_short_name}} from './component';
+import {{cookiecutter.mime_short_name}} from '{{cookiecutter.extension_name}}_react';
 
 /**
  * The class name added to this OutputWidget.

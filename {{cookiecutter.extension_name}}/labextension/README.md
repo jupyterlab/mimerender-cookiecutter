@@ -1,6 +1,6 @@
 # {{cookiecutter.extension_name}} JupyterLab extension
 
-A JupyterLab extension for rendering {{cookiecutter.mime_short_name}} output and files
+A JupyterLab extension for rendering {{cookiecutter.mime_short_name}}
 
 ## Prerequisites
 

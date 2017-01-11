@@ -1,6 +1,6 @@
-# Making a {{ cookiecutter.extension_name }} release
+# Making a {{cookiecutter.extension_name}} release
 
-This document guides an extension maintainer through creating and publishing a release of {{ cookiecutter.extension_name }}. This process creates a Python source package and a Python universal wheel and uploads them to PyPI.
+This document guides an extension maintainer through creating and publishing a release of {{cookiecutter.extension_name}}. This process creates a Python source package and a Python universal wheel and uploads them to PyPI.
 
 ## Update version number
 
