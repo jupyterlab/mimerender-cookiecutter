@@ -6,7 +6,9 @@ a JupyterLab and Jupyter Notebook extension for rendering specific mime types. S
 ## Examples
 
 * [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json)
+* [jupyterlab_geojson](https://github.com/jupyterlab/jupyterlab_geojson)
 * [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
+* [jupyterlab_table](https://github.com/gnestor/jupyterlab_table)
 
 ## Usage
 
@@ -42,6 +44,7 @@ In most cases, you will only need to edit the contents of the `component` direct
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
+    * `__init__.py`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
   * `component`: The React component(s)
     * `index.js`: Entry point for React component(s)
   * `labextension`: The JupyterLab extension
