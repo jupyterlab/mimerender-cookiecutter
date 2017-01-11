@@ -1,6 +1,6 @@
 # {{cookiecutter.extension_name}}
 
-A JupyterLab and Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}} data
+A JupyterLab and Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
 
 ![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
 
@@ -25,7 +25,7 @@ from {{cookiecutter.extension_name}} import {{cookiecutter.mime_short_name}}
 })
 ```
 
-To render a .{{cookiecutter.file_extension}} file as a tree, simply open it:
+To render a `.{{cookiecutter.file_extension}}` file as a tree, simply open it:
 
 ![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
 
