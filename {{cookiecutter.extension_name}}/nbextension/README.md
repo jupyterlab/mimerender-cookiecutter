@@ -1,6 +1,6 @@
 # {{cookiecutter.extension_name}} Jupyter Notebook extension
 
-A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}} output
+A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
 
 ## Prerequisites
 
