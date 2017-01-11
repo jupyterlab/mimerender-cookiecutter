@@ -3,7 +3,7 @@
   "name": "{{cookiecutter.extension_name}}_labextension",
   "version": "0.1.0",
   "description": "A JupyterLab extension for rendering {{cookiecutter.mime_short_name}}",
-  "author": "Grant Nestor",
+  "author": "{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>",
   "main": "lib/plugin.js",
   "keywords": [
     "jupyter",
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "node build_extension.js",
     "watch": "watch \"npm run build\" src ../component --wait 10 --ignoreDotFiles",
+    "preinstall": "npm install ../component",
     "prepublish": "npm run build",
     "extension:install": "jupyter labextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}",
     "extension:uninstall": "jupyter labextension uninstall --py --sys-prefix {{cookiecutter.extension_name}}",

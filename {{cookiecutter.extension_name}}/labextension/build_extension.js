@@ -18,24 +18,13 @@ buildExtension({
         { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
         { test: /\.json$/, loader: 'json-loader' },
         { test: /\.js$/,
-          exclude: /node_modules/, 
+          exclude: /node_modules(?!\/{{cookiecutter.extension_name}}_react)/,
           loader: 'babel-loader',
           query: {
-            presets: [
-              require.resolve('babel-preset-latest'), 
-              require.resolve('babel-preset-stage-0'), 
-              require.resolve('babel-preset-react')
-            ]
+            presets: ['latest', 'stage-0', 'react']
           }
         }
       ]
-    },
-    resolve: {
-      root: [path.resolve('.'), path.resolve('../component')],      
-      fallback: path.resolve('node_modules')
-    },
-    resolveLoader: {
-      root: [path.resolve('node_modules')]
     }
   }
 });

@@ -6,14 +6,10 @@ var path = require('path');
 var loaders = [
   {
     test: /\.js$/,
-    exclude: /node_modules/,
+    exclude: /node_modules(?!\/{{cookiecutter.extension_name}}_react)/,
     loader: 'babel-loader',
     query: {
-      presets: [
-        require.resolve('babel-preset-latest'),
-        require.resolve('babel-preset-stage-0'),
-        require.resolve('babel-preset-react')
-      ]
+      presets: ['latest', 'stage-0', 'react']
     }
   }, {
     test: /\.json$/,
@@ -85,13 +81,6 @@ module.exports = [
     devtool: 'source-map',
     module: {
       loaders: loaders,
-    },
-    resolve: {
-      root: [path.resolve('.'), path.resolve('../component')],
-      fallback: path.resolve('node_modules')
-    },
-    resolveLoader: {
-      root: [path.resolve('node_modules')]
     }
   },
   // Embeddable {{cookiecutter.extension_name}} bundle
