@@ -6,7 +6,9 @@ a JupyterLab and Jupyter Notebook extension for rendering specific mime types an
 ## Examples
 
 * [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json)
+* [jupyterlab_geojson](https://github.com/jupyterlab/jupyterlab_geojson)
 * [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
+* [jupyterlab_table](https://github.com/gnestor/jupyterlab_table)
 
 ## Branches
 
@@ -46,7 +48,7 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
-    * `__init.py__`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
+    * `__init__.py`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
   * `labextension`: The JupyterLab extension
     * `src`
       * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts

@@ -13,9 +13,9 @@ A JupyterLab and Jupyter Notebook extension for rendering {{cookiecutter.mime_sh
 To render {{cookiecutter.mime_short_name}} output in IPython:
 
 ```python
-from {{ cookiecutter.extension_name }} import {{ cookiecutter.mime_short_name }}
+from {{cookiecutter.extension_name}} import {{cookiecutter.mime_short_name}}
 
-{{ cookiecutter.mime_short_name }}({
+{{cookiecutter.mime_short_name}}({
     "string": "string",
     "array": [1, 2, 3],
     "bool": True,

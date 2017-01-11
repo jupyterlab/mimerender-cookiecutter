@@ -8,8 +8,8 @@ build/
 dist/
 
 # Compiled javascript
-{{ cookiecutter.extension_name }}/__pycache__/
-{{ cookiecutter.extension_name }}/static/
+{{cookiecutter.extension_name}}/__pycache__/
+{{cookiecutter.extension_name}}/static/
 
 # OS X
 .DS_Store
