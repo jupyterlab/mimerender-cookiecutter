@@ -1,4 +1,4 @@
-graft {{ cookiecutter.extension_name }}/static
+graft {{cookiecutter.extension_name}}/static
 graft labextension/src
 graft nbextension/src
 include labextension/package.json
