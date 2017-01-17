@@ -5,12 +5,10 @@ import { Widget } from 'phosphor/lib/ui/widget';
  */
 const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
-
 /**
  * A widget for rendering {{cookiecutter.mime_short_name}}.
  */
 export class OutputWidget extends Widget {
-
   constructor(options) {
     super();
     this.addClass(CLASS_NAME);
@@ -27,9 +25,7 @@ export class OutputWidget extends Widget {
   /**
    * A message handler invoked on an `'before-detach'` message.
    */
-  onBeforeDetach(msg) {
-    
-  }
+  onBeforeDetach(msg) {}
 
   /**
    * A render function given the widget's DOM node.
@@ -39,16 +35,13 @@ export class OutputWidget extends Widget {
     let text = document.createTextNode(JSON.stringify(json));
     this.node.appendChild(text);
   }
-
 }
 
-
 export class OutputRenderer {
-
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimetypes = ['{{cookiecutter.mime_type}}'];
+  mimetypes = [ '{{cookiecutter.mime_type}}' ];
 
   /**
    * Whether the input can safely sanitized for a given mime type.
@@ -70,5 +63,4 @@ export class OutputRenderer {
   render(options) {
     return new OutputWidget(options);
   }
-
 }
