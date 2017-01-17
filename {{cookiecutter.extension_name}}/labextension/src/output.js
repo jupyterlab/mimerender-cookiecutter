@@ -8,12 +8,10 @@ import {{cookiecutter.mime_short_name}} from '{{cookiecutter.extension_name}}_re
  */
 const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
-
 /**
  * A widget for rendering {{cookiecutter.mime_short_name}}.
  */
 export class OutputWidget extends Widget {
-
   constructor(options) {
     super();
     this.addClass(CLASS_NAME);
@@ -41,16 +39,13 @@ export class OutputWidget extends Widget {
     let json = this._source;
     ReactDOM.render(<{{cookiecutter.mime_short_name}} data={json} />, this.node);
   }
-
 }
 
-
 export class OutputRenderer {
-
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimetypes = ['{{cookiecutter.mime_type}}'];
+  mimetypes = [ '{{cookiecutter.mime_type}}' ];
 
   /**
    * Whether the input can safely sanitized for a given mime type.
@@ -72,5 +67,4 @@ export class OutputRenderer {
   render(options) {
     return new OutputWidget(options);
   }
-
 }

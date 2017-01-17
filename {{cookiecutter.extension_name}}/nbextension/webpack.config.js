@@ -8,39 +8,30 @@ var loaders = [
     test: /\.js$/,
     exclude: /node_modules(?!\/{{cookiecutter.extension_name}}_react)/,
     loader: 'babel-loader',
-    query: {
-      presets: ['latest', 'stage-0', 'react']
-    }
-  }, {
-    test: /\.json$/,
-    loader: 'json-loader'
-  }, {
-    test: /\.css$/,
-    loader: 'style-loader!css-loader'
-  }, {
-    test: /\.html$/,
-    loader: 'file-loader'
-  }, {
-    test: /\.(jpg|png|gif)$/,
-    loader: 'file-loader'
-  }, {
+    query: { presets: [ 'latest', 'stage-0', 'react' ] }
+  },
+  { test: /\.json$/, loader: 'json-loader' },
+  { test: /\.css$/, loader: 'style-loader!css-loader' },
+  { test: /\.html$/, loader: 'file-loader' },
+  { test: /\.(jpg|png|gif)$/, loader: 'file-loader' },
+  {
     test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
     loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-  }, {
+  },
+  {
     test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
     loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-  }, {
+  },
+  {
     test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
     loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
-  }, {
-    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-    loader: 'file-loader'
-  }, {
+  },
+  { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
+  {
     test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
     loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
   }
 ];
-
 
 module.exports = [
   // Notebook extension
@@ -58,9 +49,7 @@ module.exports = [
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: {
-      loaders: loaders,
-    },
+    module: { loaders: loaders },
     externals: [
       'nbextensions/{{cookiecutter.extension_name}}/index',
       'jquery'
@@ -79,9 +68,7 @@ module.exports = [
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: {
-      loaders: loaders,
-    }
+    module: { loaders: loaders }
   },
   // Embeddable {{cookiecutter.extension_name}} bundle
   //
@@ -102,11 +89,11 @@ module.exports = [
       filename: 'index.js',
       path: './embed/',
       libraryTarget: 'amd',
-      publicPath: 'https://unpkg.com/{{cookiecutter.extension_name}}@' + version + '/lib/'
+      publicPath: 'https://unpkg.com/{{cookiecutter.extension_name}}@' +
+        version +
+        '/lib/'
     },
     devtool: 'source-map',
-    module: {
-      loaders: loaders,
-    }
+    module: { loaders: loaders }
   }
 ];
