@@ -10,26 +10,32 @@ import './index.css';
  * Activate the extension.
  */
 function activatePlugin(app, rendermime, registry) {
-
   /**
    * Calculate the index of the renderer in the array renderers (e.g. Insert 
    * this renderer after any renderers with mime type that matches "+json") 
    * or simply pass an integer such as 0.
    */
-  // const index = findLastIndex(toArray(rendermime.mimetypes()), mimetype => mimetype.endsWith('+json')) + 1;
+  const index = findLastIndex(
+    toArray(rendermime.mimetypes()),
+    mimetype => mimetype.endsWith('+json')
+  ) + 1;
   const index = 0;
-  
+
   /**
    * Add the renderer to the registry of renderers.
    */
-  rendermime.addRenderer('{{cookiecutter.mime_type}}', new OutputRenderer(), index);
-  
+  rendermime.addRenderer(
+    '{{cookiecutter.mime_type}}',
+    new OutputRenderer(),
+    index
+  );
+
   if ('{{cookiecutter.file_extension}}') {
     /**
      * Set the extensions associated with {{cookiecutter.mime_short_name}}.
      */
-    const EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
-    const DEFAULT_EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
+    const EXTENSIONS = [ '.{{cookiecutter.file_extension}}' ];
+    const DEFAULT_EXTENSIONS = [ '.{{cookiecutter.file_extension}}' ];
 
     /**
      * Add file handler for {{cookiecutter.file_extension}} files.
@@ -46,12 +52,13 @@ function activatePlugin(app, rendermime, registry) {
 
     registry.addWidgetFactory(new DocWidgetFactory(options));
   }
-
 }
 
 const Plugin = {
   id: 'jupyter.extensions.{{cookiecutter.mime_short_name}}',
-  requires: '{{cookiecutter.file_extension}}' ? [IRenderMime, IDocumentRegistry] : [IRenderMime],
+  requires: '{{cookiecutter.file_extension}}'
+    ? [ IRenderMime, IDocumentRegistry ]
+    : [ IRenderMime ],
   activate: activatePlugin,
   autoStart: true
 };

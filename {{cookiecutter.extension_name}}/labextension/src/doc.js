@@ -9,12 +9,10 @@ import {{cookiecutter.mime_short_name}} from '{{cookiecutter.extension_name}}_re
  */
 const CLASS_NAME = 'jp-DocWidget{{cookiecutter.mime_short_name}}';
 
-
 /**
  * A widget for rendering {{cookiecutter.extension_name}} files.
  */
 export class DocWidget extends Widget {
-
   constructor(context) {
     super();
     this._context = context;
@@ -56,19 +54,16 @@ export class DocWidget extends Widget {
   onAfterAttach(msg) {
     this.update();
   }
-
 }
-
 
 /**
  * A widget factory for DocWidget.
  */
 export class DocWidgetFactory extends ABCWidgetFactory {
-
   constructor(options) {
     super(options);
   }
-  
+
   /**
    * Create a new widget given a context.
    */
@@ -77,5 +72,4 @@ export class DocWidgetFactory extends ABCWidgetFactory {
     this.widgetCreated.emit(widget);
     return widget;
   }
-
 }
