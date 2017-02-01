@@ -1,7 +1,7 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {{cookiecutter.mime_short_name}} from '{{cookiecutter.extension_name}}_react';
+import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_name}}_react';
 
 /**
  * The class name added to this OutputWidget.
@@ -37,7 +37,7 @@ export class OutputWidget extends Widget {
    */
   _render() {
     let json = this._source;
-    ReactDOM.render(<{{cookiecutter.mime_short_name}} data={json} />, this.node);
+    ReactDOM.render(<{{cookiecutter.mime_short_name}}Component data={json} />, this.node);
   }
 }
 

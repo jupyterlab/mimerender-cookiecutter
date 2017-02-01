@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-export default class {{cookiecutter.mime_short_name}} extends React.Component {
+export default class {{cookiecutter.mime_short_name}}Component extends React.Component {
 
   render() {
       return (

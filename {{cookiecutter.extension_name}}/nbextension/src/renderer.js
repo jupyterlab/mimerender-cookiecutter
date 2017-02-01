@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {{cookiecutter.mime_short_name}} from '{{cookiecutter.extension_name}}_react';
+import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_name}}_react';
 import './index.css';
 
 const MIME_TYPE = '{{cookiecutter.mime_type}}';
@@ -10,7 +10,7 @@ const CLASS_NAME = 'output_{{cookiecutter.mime_short_name}} rendered_html';
  * Render data to the output area
  */
 function render(data, node) {
-    ReactDOM.render(<{{cookiecutter.mime_short_name}} data={data} />, node);
+    ReactDOM.render(<{{cookiecutter.mime_short_name}}Component data={data} />, node);
 }
 
 /**
