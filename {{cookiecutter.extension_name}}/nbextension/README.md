@@ -4,7 +4,7 @@ A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
 
 ## Prerequisites
 
-* `notebook>=4.3`
+* `notebook@>=4.3.0`
 
 ## Development
 
