@@ -10,6 +10,11 @@ import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_
 const CLASS_NAME = 'jp-DocWidget{{cookiecutter.mime_short_name}}';
 
 /**
+ * The timeout to wait for change activity to have ceased before rendering.
+ */
+const RENDER_TIMEOUT = 1000;
+
+/**
  * A widget for rendering {{cookiecutter.extension_name}} files.
  */
 export class DocWidget extends Widget {
@@ -23,6 +28,11 @@ export class DocWidget extends Widget {
     context.pathChanged.connect(() => {
       this.update();
     });
+    this._monitor = new ActivityMonitor({
+      signal: context.model.contentChanged,
+      timeout: RENDER_TIMEOUT
+    });
+    this._monitor.activityStopped.connect(this.update, this);
   }
 
   /**
@@ -32,6 +42,7 @@ export class DocWidget extends Widget {
     if (!this.isDisposed) {
       this._context = null;
       ReactDOM.unmountComponentAtNode(this.node);
+      this._monitor.dispose();
       super.dispose();
     }
   }
