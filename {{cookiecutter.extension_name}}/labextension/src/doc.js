@@ -1,5 +1,6 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
+import { ActivityMonitor } from 'jupyterlab/lib/common/activitymonitor';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_name}}_react';
