@@ -21,12 +21,15 @@ if (window.require) {
  * Export the required load_ipython_extention.
  */
 export function load_ipython_extension() {
-  define([ 'nbextensions/{{cookiecutter.extension_name}}/index', 'jquery' ], (
-    Extension,
-    $
-  ) =>
-    {
-      Extension.register_renderer($);
-      Extension.render_cells($);
-    });
+  define(
+    [
+      'nbextensions/{{cookiecutter.extension_name}}/index',
+      'base/js/namespace'
+    ],
+    (Extension, Jupyter) => {
+      const { notebook } = Jupyter;
+      Extension.register_renderer(notebook);
+      Extension.render_cells(notebook);
+    }
+  );
 }
