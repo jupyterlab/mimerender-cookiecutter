@@ -49,10 +49,10 @@ module.exports = [
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: { loaders: loaders },
+    module: { loaders },
     externals: [
       'nbextensions/{{cookiecutter.extension_name}}/index',
-      'jquery'
+      'base/js/namespace'
     ]
   },
   {
@@ -69,7 +69,7 @@ module.exports = [
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: { loaders: loaders }
+    module: { loaders }
   },
   {
     // Embeddable {{cookiecutter.extension_name}} bundle
@@ -96,6 +96,6 @@ module.exports = [
         '/lib/'
     },
     devtool: 'source-map',
-    module: { loaders: loaders }
+    module: { loaders }
   }
 ];
