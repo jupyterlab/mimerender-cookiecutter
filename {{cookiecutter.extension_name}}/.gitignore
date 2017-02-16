@@ -6,6 +6,7 @@ npm-debug.log
 *.egg-info/
 build/
 dist/
+MANIFEST
 
 # Compiled javascript
 {{cookiecutter.extension_name}}/__pycache__/
