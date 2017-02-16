@@ -1,9 +1,15 @@
 var buildExtension = require('@jupyterlab/extension-builder').buildExtension;
+var path = require('path');
 
 buildExtension({
   name: '{{cookiecutter.extension_name}}',
-  entry: './src/plugin.js',
-  outputDir: '../{{cookiecutter.extension_name}}/static',
+  entry: path.join(__dirname, 'src', 'plugin.js'),
+  outputDir: path.join(
+    __dirname,
+    '..',
+    '{{cookiecutter.extension_name}}',
+    'static'
+  ),
   useDefaultLoaders: false,
   config: {
     module: {
@@ -30,11 +36,13 @@ buildExtension({
         { test: /\.json$/, loader: 'json-loader' },
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          include: [
+            path.join(__dirname, 'src')
+          ],
           loader: 'babel-loader',
           query: {
-            presets: [ 'latest' ],
-            plugins: [ 'transform-class-properties' ]
+            presets: ['latest'],
+            plugins: ['transform-class-properties']
           }
         }
       ]
