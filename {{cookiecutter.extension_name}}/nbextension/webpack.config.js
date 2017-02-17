@@ -61,7 +61,10 @@ module.exports = [
     },
     devtool: 'source-map',
     module: { loaders },
-    externals: ['nbextensions/{{cookiecutter.extension_name}}/index', 'jquery']
+    externals: [
+      'nbextensions/{{cookiecutter.extension_name}}/index', 
+      'base/js/namespace'
+    ]
   },
   /**
    * Bundle for the notebook containing the custom widget views and models
