@@ -171,9 +171,6 @@ def install_nbextension():
         print("Failed to enable nbextension: %s" % e, file=sys.stderr)
         raise
         
-if 'develop' in sys.argv or any(a.startswith('bdist') for a in sys.argv):
-    import setuptools
-
 setup_args = dict(
     name                 = '{{cookiecutter.extension_name}}',
     version              = '0.17.0',
@@ -185,12 +182,34 @@ setup_args = dict(
     install_requires = [
         'jupyterlab>=0.17.0',
         'ipython>=1.0.0'
-    ]
+    ],
+    cmdclass                = {}
 )
+        
+if 'develop' in sys.argv or any(a.startswith('bdist') for a in sys.argv):
+    from setuptools.command.develop import develop
+    from setuptools.command.install import install
+    
+    class PostDevelopCommand(develop):
+        """Build Javascript extensions after Python installation"""
+        def run(self):
+            build_labextension()
+            build_nbextension()
+            develop.run(self)
+            
+    class PostInstallCommand(install):
+        """Install and enable extensions"""
+        def run(self):
+            install_labextension()
+            install_nbextension()
+            install.run(self)
+            
+    # setup_args['cmdclass'] = {
+    #     'develop': PostDevelopCommand,
+    #     'install': PostInstallCommand
+    # }
+    setup_args['cmdclass']['develop'] = PostDevelopCommand
+    setup_args['cmdclass']['install'] = PostInstallCommand if 'develop' in sys.argv
 
 if __name__ == '__main__':
-    build_labextension()
-    build_nbextension()
     setup(**setup_args)
-    install_labextension()
-    install_nbextension()
