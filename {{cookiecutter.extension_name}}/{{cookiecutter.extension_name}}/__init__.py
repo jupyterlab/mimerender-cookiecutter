@@ -1,4 +1,4 @@
-from IPython.display import display
+from IPython.display import display, JSON
 import json
 
 
@@ -21,14 +21,25 @@ def _jupyter_nbextension_paths():
     }]
 
 
-# A display function that can be used within a notebook. E.g.:
+# A display class that can be used within a notebook. E.g.:
 #   from {{cookiecutter.extension_name}} import {{cookiecutter.mime_short_name}}
 #   {{cookiecutter.mime_short_name}}(data)
+    
+class {{cookiecutter.mime_short_name}}(JSON):
 
-def {{cookiecutter.mime_short_name}}(data):
-    bundle = {
-        '{{cookiecutter.mime_type}}': data,
-        # 'application/json': data,
-        'text/plain': json.dumps(data, indent=4)
-    }
-    display(bundle, raw=True)
+    @property
+    def data(self):
+        return self._data
+    
+    @data.setter
+    def data(self, data):
+        if isinstance(data, str):
+            data = json.loads(data)
+        self._data = data
+
+    def _ipython_display_(self):
+        bundle = {
+            '{{cookiecutter.mime_type}}': self.data,
+            'text/plain': '<{{cookiecutter.extension_name}}.{{cookiecutter.mime_short_name}} object>'
+        }
+        display(bundle, raw=True)
