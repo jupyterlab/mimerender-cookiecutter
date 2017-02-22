@@ -50,9 +50,9 @@ export class DocWidget extends Widget {
   onUpdateRequest(msg) {
     this.title.label = this._context.path.split('/').pop();
     if (this.isAttached) {
-      let content = this._context.model.toString();
-      let json = content ? JSON.parse(content) : {};
-      let text = document.createTextNode(JSON.stringify(json));
+      const content = this._context.model.toString();
+      const json = content ? JSON.parse(content) : {};
+      const text = document.createTextNode(JSON.stringify(json));
       this.node.appendChild(text);
     }
   }
@@ -77,7 +77,7 @@ export class DocWidgetFactory extends ABCWidgetFactory {
    * Create a new widget given a context.
    */
   createNewWidget(context, kernel) {
-    let widget = new DocWidget(context);
+    const widget = new DocWidget(context);
     this.widgetCreated.emit(widget);
     return widget;
   }

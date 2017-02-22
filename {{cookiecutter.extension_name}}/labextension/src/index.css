@@ -4,8 +4,7 @@
 */
 
 .jp-OutputWidget{{cookiecutter.mime_short_name}}, .jp-DocWidget{{cookiecutter.mime_short_name}} {
-  padding: 0;
-  overflow-y: scroll;
+  padding: 5px 0;
 }
 
 .jp-OutputWidget{{cookiecutter.mime_short_name}} {
@@ -13,5 +12,5 @@
 }
 
 .jp-DocWidget{{cookiecutter.mime_short_name}} {
-  
+  padding: 5px;
 }

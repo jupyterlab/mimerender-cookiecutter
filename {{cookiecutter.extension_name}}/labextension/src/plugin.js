@@ -16,8 +16,8 @@ function activatePlugin(app, rendermime, registry) {
    * or simply pass an integer such as 0.
    */
   // const index = findLastIndex(
-  //   toArray(rendermime.mimetypes()),
-  //   mimetype => mimetype.endsWith('+json')
+  //   toArray(rendermime.mimeTypes()),
+  //   mime => mime.endsWith('+json')
   // ) + 1;
   const index = 0;
 
@@ -25,8 +25,10 @@ function activatePlugin(app, rendermime, registry) {
    * Add the renderer to the registry of renderers.
    */
   rendermime.addRenderer(
-    '{{cookiecutter.mime_type}}',
-    new OutputRenderer(),
+    {
+      mimeType: '{{cookiecutter.mime_type}}',
+      renderer: new OutputRenderer()
+    },
     index
   );
 
@@ -40,7 +42,7 @@ function activatePlugin(app, rendermime, registry) {
     /**
      * Add file handler for {{cookiecutter.file_extension}} files.
      */
-    let options = {
+    const options = {
       fileExtensions: EXTENSIONS,
       defaultFor: DEFAULT_EXTENSIONS,
       name: '{{cookiecutter.mime_short_name}}',
