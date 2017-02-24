@@ -1,6 +1,6 @@
 {
   "name": "{{cookiecutter.extension_name}}_nbextension",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}",
   "author": "{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>",
   "main": "lib/index.js",

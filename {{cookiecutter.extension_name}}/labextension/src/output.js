@@ -13,7 +13,7 @@ export class OutputWidget extends Widget {
     super();
     this.addClass(CLASS_NAME);
     this._data = options.model.data.get(options.mimeType);
-    this._metadata = options.model.metadata.toJSON();
+    this._metadata = options.model.metadata.get(options.mimeType);
   }
 
   /**

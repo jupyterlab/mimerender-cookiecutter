@@ -4,7 +4,7 @@ A JupyterLab extension for rendering {{cookiecutter.mime_short_name}}
 
 ## Prerequisites
 
-* `jupyterlab@^0.16.0`
+* `jupyterlab@^0.17.0`
 
 ## Development
 

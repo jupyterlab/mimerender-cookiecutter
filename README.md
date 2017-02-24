@@ -70,9 +70,9 @@ This cookiecutter will change over time to adapt to API changes and best practic
 
 * Create a branch called `cookiecutter` that will serve as the base for another branch called `develop`. All feature branches shoud be based on `develop` and merged into `master`. 
 * When a new version of mimerender-cookiecutter is available, checkout `cookiecutter` branch and re-run the cookiecutter command from the repository root's parent directory: `cookiecutter https://github.com/jupyterlab/mimerender-cookiecutter [--checkout BRANCH_NAME] --replay --overwrite-if-exists`. This will regenerate the cookiecutter using the original inputs and overwrite any existing files in the project. 
-* Commit these changes to `cookiecutter` with a message like "mimerender-cookiecutter 0.16.0".
+* Commit these changes to `cookiecutter` with a message like "mimerender-cookiecutter 0.17.0".
 * Checkout the `develop` branch and rebase it from `cookiecutter`: `git rebase -i cookiecutter`. You will most likely encounter some merge conflicts, so resolve them and complete the rebase using `git rebase --continue`. 
-* Publish a new version of your extension by following the instructions in `RELEASE.md`. Specifically, update the version numbers and commit your changes with a message like "0.16.0", then merge the `develop` branch into `master`, create a new git tag, push the `master` branch and tag to your remote, and build and upload your distribution.
+* Publish a new version of your extension by following the instructions in `RELEASE.md`. Specifically, update the version numbers and commit your changes with a message like "0.17.0", then merge the `develop` branch into `master`, create a new git tag, push the `master` branch and tag to your remote, and build and upload your distribution.
 
 ## Package names  
 
