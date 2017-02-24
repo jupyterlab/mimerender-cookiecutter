@@ -13,4 +13,5 @@
 
 .jp-DocWidget{{cookiecutter.mime_short_name}} {
   padding: 5px;
+  overflow: auto;
 }
