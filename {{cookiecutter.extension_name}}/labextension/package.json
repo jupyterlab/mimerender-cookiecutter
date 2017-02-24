@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "node build_extension.js",
-    "watch": "watch \"npm run build\" src --wait 10 --ignoreDotFiles",
+    "watch": "watch \"npm install\" src ../component --wait 10 --ignoreDotFiles",
+    "preinstall": "npm install ../component",
     "prepublish": "npm run build",
     "extension:install": "jupyter labextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}",
     "extension:uninstall": "jupyter labextension uninstall --py --sys-prefix {{cookiecutter.extension_name}}",
@@ -22,14 +23,17 @@
   "dependencies": {
     "jupyterlab": "^0.17.0",
     "@phosphor/algorithm": "^0.1.0",
-    "@phosphor/widgets": "^0.1.3"
+    "@phosphor/widgets": "^0.1.3",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   },
   "devDependencies": {
     "@jupyterlab/extension-builder": ">=0.10.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
-    "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "watch": "^1.0.1"
   }
 }

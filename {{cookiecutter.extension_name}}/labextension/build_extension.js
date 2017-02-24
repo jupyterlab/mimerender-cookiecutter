@@ -37,13 +37,11 @@ buildExtension({
         {
           test: /\.js$/,
           include: [
-            path.join(__dirname, 'src')
+            path.join(__dirname, 'src'),
+            path.join(__dirname, 'node_modules', '{{cookiecutter.extension_name}}_react')
           ],
           loader: 'babel-loader',
-          query: {
-            presets: ['latest'],
-            plugins: ['transform-class-properties']
-          }
+          query: { presets: [ 'latest', 'stage-0', 'react' ] }
         }
       ]
     }

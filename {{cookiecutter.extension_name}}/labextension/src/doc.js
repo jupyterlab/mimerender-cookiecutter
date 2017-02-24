@@ -1,6 +1,9 @@
 import { Widget } from '@phosphor/widgets';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
 import { ActivityMonitor } from 'jupyterlab/lib/common/activitymonitor';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_name}}_react';
 
 /**
  * The class name added to a DocWidget.
@@ -39,6 +42,7 @@ export class DocWidget extends Widget {
   dispose() {
     if (!this.isDisposed) {
       this._context = null;
+      ReactDOM.unmountComponentAtNode(this.node);
       this._monitor.dispose();
       super.dispose();
     }

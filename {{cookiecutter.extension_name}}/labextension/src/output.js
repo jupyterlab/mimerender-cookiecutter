@@ -1,4 +1,7 @@
 import { Widget } from '@phosphor/widgets';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {{cookiecutter.mime_short_name}}Component from '{{cookiecutter.extension_name}}_react';
 
 /**
  * The class name added to this OutputWidget.
@@ -26,14 +29,18 @@ export class OutputWidget extends Widget {
   /**
    * A message handler invoked on an `'before-detach'` message.
    */
-  onBeforeDetach(msg) {}
+  onBeforeDetach(msg) {
+    ReactDOM.unmountComponentAtNode(this.node);
+  }
 
   /**
    * A render function given the widget's DOM node.
    */
   _render() {
-    const text = document.createTextNode(JSON.stringify(this._data));
-    this.node.appendChild(text);
+    ReactDOM.render(
+      <{{cookiecutter.mime_short_name}}Component data={this._data} metadata={this._metadata} />,
+      this.node
+    );
   }
 }
 

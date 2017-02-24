@@ -9,10 +9,11 @@ var loaders = [
   {
     test: /\.js$/,
     include: [
-      path.join(__dirname, 'src')
+      path.join(__dirname, 'src'),
+      path.join(__dirname, 'node_modules', '{{cookiecutter.extension_name}}_react')
     ],
     loader: 'babel-loader',
-    query: { presets: [ 'latest' ] }
+    query: { presets: [ 'latest', 'stage-0', 'react' ] }
   },
   { test: /\.json$/, loader: 'json-loader' },
   { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -105,7 +106,7 @@ module.exports = [
    * by the custom widget embedder.
    */
   {
-    entry: path.join(__dirname, 'src', 'embed.js'),
+    entry: './src/embed.js',
     output: {
       filename: 'index.js',
       path: path.join(__dirname, 'embed'),

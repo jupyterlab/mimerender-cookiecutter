@@ -1,7 +1,7 @@
 # mimerender-cookiecutter
 
 A [cookiecutter](https://github.com/audreyr/cookiecutter) template for creating
-a JupyterLab and Jupyter Notebook extension for rendering specific mime types and file extensions.
+a JupyterLab and Jupyter Notebook extension for rendering specific mime types and file extensions. See the [master branch](https://github.com/jupyterlab/mimerender-cookiecutter) of this repo for a non-React cookiecutter.
 
 ## Examples
 
@@ -9,10 +9,6 @@ a JupyterLab and Jupyter Notebook extension for rendering specific mime types an
 * [jupyterlab_geojson](https://github.com/jupyterlab/jupyterlab_geojson)
 * [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
 * [jupyterlab_table](https://github.com/gnestor/jupyterlab_table)
-
-## Branches
-
-* [React](https://github.com/jupyterlab/mimerender-cookiecutter/tree/react)
 
 ## Usage
 
@@ -25,7 +21,7 @@ pip install cookiecutter
 Use cookiecutter to generate a package:
 
 ```
-cookiecutter https://github.com/jupyterlab/mimerender-cookiecutter
+cookiecutter https://github.com/jupyterlab/mimerender-cookiecutter  --checkout react
 ```
 
 ## Prompts
@@ -41,14 +37,16 @@ The cookiecutter will prompt you with the following questions and generate a pro
 
 ## Project structure
 
-The project is divided into 2 top-level directories, one for each extension (lab and notebook). 
+The project is divided into 3 top-level directories, one for each extension (lab and notebook) and one for the React component(s). 
 
-In most cases, you will only need to edit the `OutputWidget._render` method in `labextension/src/output.js` (for rendering output data of a specific mime type) and the `DocWidget.onUpdateRequest` method in `labextension/src/doc.js` (if your extension should render files of a specific type). 
+In most cases, you will only need to edit the contents of the `component` directory. When building the Javascript, the `/component` directory will be copied to the `src` directory of both extensions and then the Javascript in the `src` directories will be built using webpack and output in `extension_name/static`. 
 
 * `extension_name`
   * `extension_name`: The Python package
     * `static`: Compiled Javascript for both extensions
     * `__init__.py`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
+  * `component`: The React component(s)
+    * `index.js`: Entry point for React component(s)
   * `labextension`: The JupyterLab extension
     * `src`
       * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts
