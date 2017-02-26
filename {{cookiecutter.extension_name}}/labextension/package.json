@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "jupyterlab": "^0.17.0",
-    "phosphor": "^0.7.0"
+    "@phosphor/algorithm": "^0.1.0",
+    "@phosphor/widgets": "^0.1.3"
   },
   "devDependencies": {
     "@jupyterlab/extension-builder": ">=0.10.0",

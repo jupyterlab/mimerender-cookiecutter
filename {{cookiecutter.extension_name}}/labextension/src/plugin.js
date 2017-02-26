@@ -1,7 +1,6 @@
 import { IRenderMime } from 'jupyterlab/lib/rendermime';
 import { IDocumentRegistry } from 'jupyterlab/lib/docregistry';
-import { toArray } from 'phosphor/lib/algorithm/iteration';
-import { findLastIndex } from 'phosphor/lib/algorithm/searching';
+import { toArray, ArrayExt } from '@phosphor/algorithm';
 import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';
 import './index.css';
@@ -15,7 +14,7 @@ function activatePlugin(app, rendermime, registry) {
    * this renderer after any renderers with mime type that matches "+json") 
    * or simply pass an integer such as 0.
    */
-  // const index = findLastIndex(
+  // const index = ArrayExt.findLastIndex(
   //   toArray(rendermime.mimeTypes()),
   //   mime => mime.endsWith('+json')
   // ) + 1;

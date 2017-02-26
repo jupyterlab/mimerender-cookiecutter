@@ -1,4 +1,4 @@
-import { Widget } from 'phosphor/lib/ui/widget';
+import { Widget } from '@phosphor/widgets';
 
 /**
  * The class name added to this OutputWidget.

@@ -1,4 +1,4 @@
-import { Widget } from 'phosphor/lib/ui/widget';
+import { Widget } from '@phosphor/widgets';
 import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
 import { ActivityMonitor } from 'jupyterlab/lib/common/activitymonitor';
 
