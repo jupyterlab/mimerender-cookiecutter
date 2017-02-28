@@ -51,9 +51,27 @@ export class DocWidget extends Widget {
     this.title.label = this._context.path.split('/').pop();
     if (this.isAttached) {
       const content = this._context.model.toString();
-      const json = content ? JSON.parse(content) : {};
-      const text = document.createTextNode(JSON.stringify(json));
-      this.node.appendChild(text);
+      try {
+        const json = JSON.parse(content);
+        const text = document.createTextNode(JSON.stringify(json, null, 2));
+        this.node.appendChild(text);
+      } catch (error) {
+        let container = document.createElement('div');
+        container.setAttribute('class', 'jp-RenderedText jp-mod-error');
+        container.style.cssText = `width: 100%; text-align: center; padding: 10px; box-sizing: border-box;`
+        let titleContainer = document.createElement('span');
+        titleContainer.style.cssText = `font-size: 18px; font-weight: 500; padding-bottom: 10px;`
+        const titleText = document.createTextNode('Invalid JSON');
+        titleContainer.appendChild(titleText);
+        container.appendChild(titleContainer);
+        let contentContainer = document.createElement('pre');
+        contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`
+        const contentText = document.createTextNode(content);
+        contentContainer.appendChild(contentText);
+        container.appendChild(contentContainer);
+        this.node.innerHTML = '';
+        this.node.appendChild(container);
+      }
     }
   }
 
