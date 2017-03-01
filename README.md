@@ -69,10 +69,19 @@ This cookiecutter will change over time to adapt to API changes and best practic
 ![workflow](workflow.png)
 
 * Create a branch called `cookiecutter` that will serve as the base for another branch called `develop`. All feature branches shoud be based on `develop` and merged into `master`. 
-* When a new version of mimerender-cookiecutter is available, checkout `cookiecutter` branch and re-run the cookiecutter command from the repository root's parent directory: `cookiecutter https://github.com/jupyterlab/mimerender-cookiecutter [--checkout BRANCH_NAME] --replay --overwrite-if-exists`. This will regenerate the cookiecutter using the original inputs and overwrite any existing files in the project. 
-* Commit these changes to `cookiecutter` with a message like "mimerender-cookiecutter 0.17.0".
-* Checkout the `develop` branch and rebase it from `cookiecutter`: `git rebase -i cookiecutter`. You will most likely encounter some merge conflicts, so resolve them and complete the rebase using `git rebase --continue`. 
-* Publish a new version of your extension by following the instructions in `RELEASE.md`. Specifically, update the version numbers and commit your changes with a message like "0.17.0", then merge the `develop` branch into `master`, create a new git tag, push the `master` branch and tag to your remote, and build and upload your distribution.
+* When a new version of mimerender-cookiecutter is available:
+  * Checkout `cookiecutter` branch: `git checkout cookiecutter`
+  * Re-run the cookiecutter command from the repository root: `cookiecutter https://github.com/jupyterlab/mimerender-cookiecutter [--checkout BRANCH_NAME] --output-dir .. --config-file .cookiecutter.yaml --no-input --overwrite-if-exists`
+    * `--checkout` is optional and specifies a branch of mimerender-cookiecutter to checkout (e.g. `react`). 
+    * `--output-dir ..` allows us to run the cookiecutter in the repo root vs. the parent directory because cookiecutter will always render output in a child directory of the `output-dir`.
+    * `--config-file .cookiecutter.yaml` will run the cookiecutter with the original inputs which are persisted to `.cookiecutter.yaml` in the repo root.
+    * `--no-input` will skip the cookiecutter prompts.
+    * `--overwrite-if-exists` will replace our previous cookiecutter output with the most up-to-date output.
+  *  Commit these changes to `cookiecutter` with a message like "mimerender-cookiecutter [VERSION_NUMBER]": `git commit -m "mimerender-cookiecutter [VERSION_NUMBER]"`
+  * Checkout the `develop` branch: `git checkout develop`
+  * Rebase it from `cookiecutter`: `git rebase cookiecutter`
+    * You may encounter some merge conflicts, so resolve them and complete the rebase using `git rebase --continue`
+  * Publish a new version of your extension by following the instructions in `RELEASE.md`.
 
 ## Package names  
 
