@@ -56,25 +56,47 @@ export class DocWidget extends Widget {
     if (this.isAttached) {
       const content = this._context.model.toString();
       try {
-        const json = JSON.parse(content);
-        const text = document.createTextNode(JSON.stringify(json, null, 2));
-        this.node.appendChild(text);
+        const data = JSON.parse(content);
+        ReactDOM.render(
+          <{{cookiecutter.mime_short_name}}Component data={data} />,
+          this.node
+        );
       } catch (error) {
-        let container = document.createElement('div');
-        container.setAttribute('class', 'jp-RenderedText jp-mod-error');
-        container.style.cssText = `width: 100%; text-align: center; padding: 10px; box-sizing: border-box;`
-        let titleContainer = document.createElement('span');
-        titleContainer.style.cssText = `font-size: 18px; font-weight: 500; padding-bottom: 10px;`
-        const titleText = document.createTextNode('Invalid JSON');
-        titleContainer.appendChild(titleText);
-        container.appendChild(titleContainer);
-        let contentContainer = document.createElement('pre');
-        contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`
-        const contentText = document.createTextNode(content);
-        contentContainer.appendChild(contentText);
-        container.appendChild(contentContainer);
-        this.node.innerHTML = '';
-        this.node.appendChild(container);
+        {% raw %}
+        const ErrorDisplay = props => (
+          <div
+            className="jp-RenderedText jp-mod-error"
+            style={{
+              width: '100%',
+              minHeight: '100%',
+              textAlign: 'center',
+              padding: 10,
+              boxSizing: 'border-box'
+            }}
+          >
+            <span
+              style={{
+                fontSize: 18,
+                fontWeight: 500
+              }}
+            >{props.message}</span>
+            <pre
+              style={{
+                textAlign: 'left',
+                padding: 10,
+                overflow: 'hidden'
+              }}
+            >{props.content}</pre>
+          </div>
+        );
+        {% endraw %}
+        ReactDOM.render(
+          <ErrorDisplay
+            message="Invalid JSON"
+            content={content}
+          />,
+          this.node
+        );
       }
     }
   }
