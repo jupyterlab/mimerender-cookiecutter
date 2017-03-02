@@ -8,11 +8,9 @@ var path = require('path');
 var loaders = [
   {
     test: /\.js$/,
-    include: [
-      path.join(__dirname, 'src')
-    ],
+    include: [path.join(__dirname, 'src')],
     loader: 'babel-loader',
-    query: { presets: [ 'latest' ] }
+    query: { presets: ['latest'] }
   },
   { test: /\.json$/, loader: 'json-loader' },
   { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -62,7 +60,7 @@ module.exports = [
     devtool: 'source-map',
     module: { loaders },
     externals: [
-      'nbextensions/{{cookiecutter.extension_name}}/index', 
+      'nbextensions/{{cookiecutter.extension_name}}/index',
       'base/js/namespace'
     ]
   },
@@ -110,9 +108,9 @@ module.exports = [
       filename: 'index.js',
       path: path.join(__dirname, 'embed'),
       libraryTarget: 'amd',
-      publicPath: (
-        'https://unpkg.com/{{cookiecutter.extension_name}}@' + version + '/lib/'
-      )
+      publicPath: 'https://unpkg.com/{{cookiecutter.extension_name}}@' +
+        version +
+        '/lib/'
     },
     devtool: 'source-map',
     module: { loaders }

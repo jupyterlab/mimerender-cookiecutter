@@ -35,8 +35,8 @@ function activatePlugin(app, rendermime, registry) {
     /**
      * Set the extensions associated with {{cookiecutter.mime_short_name}}.
      */
-    const EXTENSIONS = [ '.{{cookiecutter.file_extension}}' ];
-    const DEFAULT_EXTENSIONS = [ '.{{cookiecutter.file_extension}}' ];
+    const EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
+    const DEFAULT_EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
 
     /**
      * Add file handler for {{cookiecutter.file_extension}} files.
@@ -58,8 +58,8 @@ function activatePlugin(app, rendermime, registry) {
 const Plugin = {
   id: 'jupyter.extensions.{{cookiecutter.mime_short_name}}',
   requires: '{{cookiecutter.file_extension}}'
-    ? [ IRenderMime, IDocumentRegistry ]
-    : [ IRenderMime ],
+    ? [IRenderMime, IDocumentRegistry]
+    : [IRenderMime],
   activate: activatePlugin,
   autoStart: true
 };

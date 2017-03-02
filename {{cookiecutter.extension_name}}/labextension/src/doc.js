@@ -58,14 +58,14 @@ export class DocWidget extends Widget {
       } catch (error) {
         let container = document.createElement('div');
         container.setAttribute('class', 'jp-RenderedText jp-mod-error');
-        container.style.cssText = `width: 100%; text-align: center; padding: 10px; box-sizing: border-box;`
+        container.style.cssText = `width: 100%; text-align: center; padding: 10px; box-sizing: border-box;`;
         let titleContainer = document.createElement('span');
-        titleContainer.style.cssText = `font-size: 18px; font-weight: 500; padding-bottom: 10px;`
+        titleContainer.style.cssText = `font-size: 18px; font-weight: 500; padding-bottom: 10px;`;
         const titleText = document.createTextNode('Invalid JSON');
         titleContainer.appendChild(titleText);
         container.appendChild(titleContainer);
         let contentContainer = document.createElement('pre');
-        contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`
+        contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`;
         const contentText = document.createTextNode(content);
         contentContainer.appendChild(contentText);
         container.appendChild(contentContainer);

@@ -41,7 +41,7 @@ export class OutputRenderer {
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimeTypes = [ '{{cookiecutter.mime_type}}' ];
+  mimeTypes = ['{{cookiecutter.mime_type}}'];
 
   /**
    * Whether the renderer can render given the render options.
