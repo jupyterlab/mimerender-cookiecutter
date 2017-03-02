@@ -25,7 +25,7 @@ export function register_renderer(notebook) {
     const type = MIME_TYPE;
     const toinsert = this.create_output_subarea(md, CLASS_NAME, type);
     this.keyboard_manager.register_events(toinsert);
-    render(json, toinsert[(0)]);
+    render(json, toinsert[0]);
     element.append(toinsert);
     return toinsert;
   };
@@ -53,9 +53,9 @@ export function render_cells(notebook) {
   notebook.get_cells().forEach(cell => {
     // If a cell has output data of 'application/geo+json' mime type
     if (
-      cell.output_area && 
-      cell.output_area.outputs.find(output => 
-        output.data && output.data[MIME_TYPE]
+      cell.output_area &&
+      cell.output_area.outputs.find(
+        output => output.data && output.data[MIME_TYPE]
       )
     ) {
       // Re-render the cell by executing it

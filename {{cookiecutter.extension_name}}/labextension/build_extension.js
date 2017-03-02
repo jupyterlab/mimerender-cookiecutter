@@ -36,9 +36,7 @@ buildExtension({
         { test: /\.json$/, loader: 'json-loader' },
         {
           test: /\.js$/,
-          include: [
-            path.join(__dirname, 'src')
-          ],
+          include: [path.join(__dirname, 'src')],
           loader: 'babel-loader',
           query: {
             presets: ['latest'],

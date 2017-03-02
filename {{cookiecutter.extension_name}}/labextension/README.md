@@ -1,4 +1,4 @@
-# {{cookiecutter.extension_name}} JupyterLab extension
+# labextension
 
 A JupyterLab extension for rendering {{cookiecutter.mime_short_name}}
 

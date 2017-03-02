@@ -1,4 +1,4 @@
-# {{cookiecutter.extension_name}} Jupyter Notebook extension
+# nbextension
 
 A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}
 
