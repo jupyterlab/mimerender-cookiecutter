@@ -55,7 +55,8 @@ module.exports = [
         '{{cookiecutter.extension_name}}',
         'static'
       ),
-      libraryTarget: 'amd'
+      libraryTarget: 'amd',
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
     },
     devtool: 'source-map',
     module: { loaders },
@@ -82,7 +83,8 @@ module.exports = [
         '{{cookiecutter.extension_name}}',
         'static'
       ),
-      libraryTarget: 'amd'
+      libraryTarget: 'amd',
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
     },
     devtool: 'source-map',
     module: { loaders }
@@ -110,7 +112,8 @@ module.exports = [
       libraryTarget: 'amd',
       publicPath: 'https://unpkg.com/{{cookiecutter.extension_name}}@' +
         version +
-        '/lib/'
+        '/lib/',
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
     },
     devtool: 'source-map',
     module: { loaders }
