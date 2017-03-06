@@ -12,6 +12,7 @@ export class OutputWidget extends Widget {
   constructor(options) {
     super();
     this.addClass(CLASS_NAME);
+    this._mimeType = options.mimeType
     this._data = options.model.data.get(options.mimeType);
     this._metadata = options.model.metadata.get(options.mimeType);
   }
@@ -34,6 +35,8 @@ export class OutputWidget extends Widget {
   _render() {
     const text = document.createTextNode(JSON.stringify(this._data));
     this.node.appendChild(text);
+    // // Inject static HTML into mime bundle
+    // this._data.set('text/html', renderStaticHTML(this._data))
   }
 }
 
