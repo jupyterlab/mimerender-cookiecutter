@@ -19,11 +19,11 @@
     "extension:disable": "jupyter nbextension disable --py --sys-prefix notebook_json"
   },
   "dependencies": {
-    "underscore": "^1.8.3"
+    
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.7",
+    "babel-loader": "^6.4.0",
     "babel-preset-latest": "^6.16.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
@@ -31,6 +31,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "watch": "^1.0.1",
-    "webpack": "^1.12.14"
+    "webpack": "^2.2.0"
   }
 }
