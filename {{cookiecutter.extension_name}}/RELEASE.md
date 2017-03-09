@@ -21,7 +21,6 @@ git clean -xfd
 Build the Javascript extension bundle, then build the Python package and wheel:
 
 ```bash
-bash build.js
 python setup.py sdist
 python setup.py bdist_wheel --universal
 ```
