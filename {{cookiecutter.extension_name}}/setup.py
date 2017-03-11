@@ -22,14 +22,14 @@ if not os.path.exists('labextension/node_modules') and not os.path.exists('nbext
 
 setup_args = dict(
     name                 = '{{cookiecutter.extension_name}}',
-    version              = '0.17.0',
+    version              = '0.18.0',
     packages             = ['{{cookiecutter.extension_name}}'],
     author               = '{{cookiecutter.author_name}}',
     author_email         = '{{cookiecutter.author_email}}',
     keywords             = ['jupyter', 'jupyterlab', 'labextension', 'notebook', 'nbextension'],
     include_package_data = True,
     install_requires = [
-        'jupyterlab>=0.17.0',
+        'jupyterlab>=0.18.0',
         'ipython>=1.0.0'
     ]
 )
