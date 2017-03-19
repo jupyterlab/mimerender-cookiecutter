@@ -39,7 +39,7 @@ class {{cookiecutter.mime_short_name}}(JSON):
     def _ipython_display_(self):
         bundle = {
             '{{cookiecutter.mime_type}}': self.data,
-            'text/plain': '<{{cookiecutter.extension_name}}.{{cookiecutter.mime_short_name}} object>'
+            'text/plain': json.dumps(self.data, indent=4)
         }
         metadata = {
             '{{cookiecutter.mime_type}}': self.metadata
