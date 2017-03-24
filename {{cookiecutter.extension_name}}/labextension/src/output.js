@@ -25,9 +25,36 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'before-detach'` message.
+   * A message handler invoked on an `'before-detach'` message
    */
-  onBeforeDetach(msg) {}
+  onBeforeDetach(msg) {
+    /* Dispose of resources used by this widget */
+    // renderLibrary.dispose(this.node);
+  }
+
+  /**
+   * A message handler invoked on an `'before-detach'` message
+   */
+  onChildAdded(msg) {
+    /* e.g. Inject a static image representation into the mime bundle for
+     *  endering on Github, etc. 
+     */
+    // renderLibrary.toPng(this.node).then(url => {
+    //   const data = url.split(',')[1];
+    //   this._data.set('image/png', data);
+    // })
+  }
+
+  /**
+   * A message handler invoked when the widget is resized
+   */
+  onResize(msg) {
+    /* Update tracked widget and height values */
+    this._width = msg.width;
+    this._height = msg.height;
+    /* Re-render on resize */
+    this.update();
+  }
 
   /**
    * A render function given the widget's DOM node.

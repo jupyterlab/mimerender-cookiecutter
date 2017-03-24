@@ -46,7 +46,34 @@ export class DocWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'update-request'` message.
+   * A message handler invoked on an `'after-attach'` message
+   */
+  onAfterAttach(msg) {
+    /* Render initial data */
+    this.update();
+  }
+
+  /**
+   * A message handler invoked on an `'after-attach'` message
+   */
+  onAfterAttach(msg) {
+    /* Render initial data */
+    this.update();
+  }
+
+  /**
+   * A message handler invoked when the widget is resized
+   */
+  onResize(msg) {
+    /* Update tracked widget and height values */
+    this._width = msg.width;
+    this._height = msg.height;
+    /* Re-render on resize */
+    this.update();
+  }
+
+  /**
+   * A message handler invoked on an `'update-request'` message
    */
   onUpdateRequest(msg) {
     this.title.label = this._context.path.split('/').pop();
@@ -74,13 +101,6 @@ export class DocWidget extends Widget {
         this.node.appendChild(container);
       }
     }
-  }
-
-  /**
-   * A message handler invoked on an `'after-attach'` message.
-   */
-  onAfterAttach(msg) {
-    this.update();
   }
 }
 
