@@ -26,8 +26,8 @@ setup_args = dict(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    cmdclass         = cmdclass,
-    install_requires = [
+    cmdclass             = cmdclass,
+    install_requires     = [
         'jupyterlab>=0.18.0',
         'notebook>=4.3.0',
         'ipython>=1.0.0'

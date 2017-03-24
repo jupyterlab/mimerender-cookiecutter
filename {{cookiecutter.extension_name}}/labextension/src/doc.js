@@ -13,7 +13,6 @@ export class DocWidget extends Widget {
   constructor(context) {
     super();
     this._context = context;
-    this.addClass(CLASS_NAME);
     /* Re-render when the document content changes */
     context.model.contentChanged.connect(() => {
       this.update();
@@ -28,6 +27,10 @@ export class DocWidget extends Widget {
       timeout: RENDER_TIMEOUT
     });
     this._monitor.activityStopped.connect(this.update, this);
+    /* Track widget width and height */
+    this._width = this.node.offsetWidth;
+    this._height = this.node.offsetHeight;
+    this.addClass(CLASS_NAME);
   }
 
   /**
@@ -68,19 +71,20 @@ export class DocWidget extends Widget {
     if (this.isAttached) {
       const content = this._context.model.toString();
       try {
-        const json = JSON.parse(content);
-        const text = document.createTextNode(JSON.stringify(json, null, 2));
+        const data = JSON.parse(content);
+        const text = document.createTextNode(JSON.stringify(data));
         this.node.appendChild(text);
       } catch (error) {
-        let container = document.createElement('div');
+        const container = document.createElement('div');
         container.setAttribute('class', 'jp-RenderedText jp-mod-error');
         container.style.cssText = `width: 100%; text-align: center; padding: 10px; box-sizing: border-box;`;
-        let titleContainer = document.createElement('span');
+        const titleContainer = document.createElement('span');
         titleContainer.style.cssText = `font-size: 18px; font-weight: 500; padding-bottom: 10px;`;
         const titleText = document.createTextNode('Invalid JSON');
         titleContainer.appendChild(titleText);
         container.appendChild(titleContainer);
-        let contentContainer = document.createElement('pre');
+        const contentContainer = document.createElement('pre');
+        contentContainer.className = 'CodeMirror cm-s-jupyter CodeMirror-wrap';
         contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`;
         const contentText = document.createTextNode(content);
         contentContainer.appendChild(contentText);

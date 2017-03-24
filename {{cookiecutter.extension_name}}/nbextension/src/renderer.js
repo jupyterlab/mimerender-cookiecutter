@@ -62,7 +62,7 @@ export function register_renderer(notebook) {
     );
     this.keyboard_manager.register_events(toinsert);
     /* Render data to DOM node */
-    const props = { data, metadata };
+    const props = { data, metadata: metadata[MIME_TYPE] };
     render(props, toinsert[0]);
     element.append(toinsert);
     return toinsert;

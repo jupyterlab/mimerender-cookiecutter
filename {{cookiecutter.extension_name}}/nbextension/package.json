@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "{{cookiecutter.extension_name}}_nbextension",
   "version": "0.18.0",
   "description": "A Jupyter Notebook extension for rendering {{cookiecutter.mime_short_name}}",
