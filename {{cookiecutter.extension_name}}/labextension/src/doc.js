@@ -86,8 +86,7 @@ export class DocWidget extends Widget {
         const contentContainer = document.createElement('pre');
         contentContainer.className = 'CodeMirror cm-s-jupyter CodeMirror-wrap';
         contentContainer.style.cssText = `text-align: left; padding: 10px; overflow: hidden;`;
-        const contentText = document.createTextNode(content);
-        contentContainer.appendChild(contentText);
+        runMode(content, { name: 'javscript', json: true }, contentContainer);
         container.appendChild(contentContainer);
         this.node.innerHTML = '';
         this.node.appendChild(container);
