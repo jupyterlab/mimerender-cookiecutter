@@ -6,21 +6,19 @@ import { Widget } from '@phosphor/widgets';
 const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
 /**
- * A widget for rendering {{cookiecutter.mime_short_name}}.
+ * A Phosphor widget for rendering {{cookiecutter.mime_short_name}}
  */
 export class OutputWidget extends Widget {
   constructor(options) {
     super();
     this.addClass(CLASS_NAME);
-    this._mimeType = options.mimeType
-    this._data = options.model.data.get(options.mimeType);
-    this._metadata = options.model.metadata.get(options.mimeType);
   }
 
   /**
-   * A message handler invoked on an `'after-attach'` message.
+   * A message handler invoked on an `'after-attach'` message
    */
   onAfterAttach(msg) {
+    /* Render initial data */
     this._render();
   }
 
@@ -33,7 +31,7 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'before-detach'` message
+   * A message handler invoked on an `'child-added'` message
    */
   onChildAdded(msg) {
     /* e.g. Inject a static image representation into the mime bundle for
@@ -46,7 +44,7 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A message handler invoked when the widget is resized
+   * A message handler invoked on a `'resize'` message
    */
   onResize(msg) {
     /* Update tracked widget and height values */
@@ -57,7 +55,7 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A render function given the widget's DOM node.
+   * Render data to DOM node
    */
   _render() {
     const text = document.createTextNode(JSON.stringify(this._data));
@@ -69,19 +67,19 @@ export class OutputWidget extends Widget {
 
 export class OutputRenderer {
   /**
-   * The mime types this OutputRenderer accepts.
+   * The mime types that this OutputRenderer accepts
    */
   mimeTypes = ['{{cookiecutter.mime_type}}'];
 
   /**
-   * Whether the renderer can render given the render options.
+   * Whether the renderer can render given the render options
    */
   canRender(options) {
     return this.mimeTypes.indexOf(options.mimeType) !== -1;
   }
 
   /**
-   * Render the transformed mime bundle.
+   * Render the transformed mime bundle
    */
   render(options) {
     return new OutputWidget(options);

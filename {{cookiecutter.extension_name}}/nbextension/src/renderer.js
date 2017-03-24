@@ -4,7 +4,7 @@ const MIME_TYPE = '{{cookiecutter.mime_type}}';
 const CLASS_NAME = 'output_{{cookiecutter.mime_short_name}} rendered_html';
 
 /**
- * Render data to the output area
+ * Render data to the DOM node
  */
 function render(props, node) {
   const text = document.createTextNode(JSON.stringify(props.data));
@@ -47,7 +47,7 @@ function handleAddOutput(event,  { output, output_area }) {
  * output area
  */
 export function register_renderer(notebook) {
-  // Get an instance of output_area from a CodeCell instance
+  /* Get an instance of output_area from a CodeCell instance */
   const { output_area } = notebook
     .get_cells()
     .reduce((result, cell) => cell.output_area ? cell : result, {});
@@ -67,18 +67,32 @@ export function register_renderer(notebook) {
     element.append(toinsert);
     return toinsert;
   };
-  // // Calculate the index of this renderer in `output_area.display_order`
-  // // e.g. Insert this renderer after any renderers with mime type that matches "+json"
-  // // const mime_types = output_area.mime_types();
+
+  /* Handle when an output is cleared or removed */
+  output_area.events.on('clear_output.CodeCell', handleClearOutput);
+
+  /* Handle when a new output is added */
+  output_area.events.on('output_added.OutputArea', handleAddOutput);
+
+  /**
+   * Calculate the index of this renderer in `output_area.display_order`
+   * e.g. Insert this renderer after any renderers with mime type that matches 
+   * "+json"
+   */
+  // const mime_types = output_area.mime_types();
   // const json_types = mime_types.filter(mimetype => mimetype.includes('+json'));
   // const index = mime_types.lastIndexOf(json_types.pop() + 1);
-  // // ...or just insert it at the top
+
+  /* ...or just insert it at the top */
   const index = 0;
-  // Register the mime type and append_mime_type function with the notebook's OutputArea
+
+  /**
+   * Register the mime type and append_mim function with output_area
+   */
   output_area.register_mime_type(MIME_TYPE, append_mime, {
-    // Is output safe?
+    /* Is output safe? */
     safe: true,
-    // Index of renderer in `OutputArea.display_order`
+    /* Index of renderer in `output_area.display_order` */
     index: index
   });
 }
@@ -87,16 +101,16 @@ export function register_renderer(notebook) {
  * Re-render cells with output data of '{{cookiecutter.mime_type}}' mime type
  */
 export function render_cells(notebook) {
-  // Get all cells in notebook
+  /* Get all cells in notebook */
   notebook.get_cells().forEach(cell => {
-    // If a cell has output data of '{{cookiecutter.mime_type}}' mime type
+    /* If a cell has output data of '{{cookiecutter.mime_type}}' mime type */
     if (
       cell.output_area &&
       cell.output_area.outputs.find(
         output => output.data && output.data[MIME_TYPE]
       )
     ) {
-      // Re-render the cell by executing it
+      /* Re-render the cell */
       notebook.render_cell_output(cell);
     }
   });
