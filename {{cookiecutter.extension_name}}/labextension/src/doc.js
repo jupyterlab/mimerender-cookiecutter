@@ -3,30 +3,26 @@ import { ABCWidgetFactory } from '@jupyterlab/docregistry';
 import { ActivityMonitor } from '@jupyterlab/coreutils';
 import { runMode } from '@jupyterlab/codemirror';
 
-/**
- * The class name added to a DocWidget.
- */
 const CLASS_NAME = 'jp-DocWidget{{cookiecutter.mime_short_name}}';
-
-/**
- * The timeout to wait for change activity to have ceased before rendering.
- */
 const RENDER_TIMEOUT = 1000;
 
 /**
- * A widget for rendering {{cookiecutter.extension_name}} files.
+ * A widget for rendering {{cookiecutter.extension_name}} files
  */
 export class DocWidget extends Widget {
   constructor(context) {
     super();
     this._context = context;
     this.addClass(CLASS_NAME);
+    /* Re-render when the document content changes */
     context.model.contentChanged.connect(() => {
       this.update();
     });
+    /* Re-render when the document path changes */
     context.pathChanged.connect(() => {
       this.update();
     });
+    /* Throttle re-renders until changes have stopped */
     this._monitor = new ActivityMonitor({
       signal: context.model.contentChanged,
       timeout: RENDER_TIMEOUT
@@ -35,7 +31,7 @@ export class DocWidget extends Widget {
   }
 
   /**
-   * Dispose of the resources used by the widget.
+   * Dispose of the resources used by the widget
    */
   dispose() {
     if (!this.isDisposed) {
@@ -54,15 +50,7 @@ export class DocWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'after-attach'` message
-   */
-  onAfterAttach(msg) {
-    /* Render initial data */
-    this.update();
-  }
-
-  /**
-   * A message handler invoked when the widget is resized
+   * A message handler invoked on a `'resize'` message
    */
   onResize(msg) {
     /* Update tracked widget and height values */
@@ -105,7 +93,7 @@ export class DocWidget extends Widget {
 }
 
 /**
- * A widget factory for DocWidget.
+ * A widget factory for DocWidget
  */
 export class DocWidgetFactory extends ABCWidgetFactory {
   constructor(options) {
@@ -113,7 +101,7 @@ export class DocWidgetFactory extends ABCWidgetFactory {
   }
 
   /**
-   * Create a new widget given a context.
+   * Create a new widget instance
    */
   createNewWidget(context, kernel) {
     const widget = new DocWidget(context);

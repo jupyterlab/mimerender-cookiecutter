@@ -10,18 +10,19 @@ import './index.css';
  */
 function activatePlugin(app, rendermime, registry) {
   /**
-   * Calculate the index of the renderer in the array renderers (e.g. Insert 
-   * this renderer after any renderers with mime type that matches "+json") 
-   * or simply pass an integer such as 0.
+   * Calculate the index of the renderer in the array renderers
+   * e.g. Insert this renderer after any renderers with mime type that matches 
+   * "+json"
    */
   // const index = ArrayExt.findLastIndex(
   //   toArray(rendermime.mimeTypes()),
   //   mime => mime.endsWith('+json')
   // ) + 1;
+  /* ...or just insert it at the top */
   const index = 0;
 
   /**
-   * Add the renderer to the registry of renderers.
+   * Add mime type renderer for {{cookiecutter.mime_type}}
    */
   rendermime.addRenderer(
     {
@@ -32,14 +33,11 @@ function activatePlugin(app, rendermime, registry) {
   );
 
   if ('{{cookiecutter.file_extension}}') {
-    /**
-     * Set the extensions associated with {{cookiecutter.mime_short_name}}.
-     */
     const EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
     const DEFAULT_EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
 
     /**
-     * Add file handler for {{cookiecutter.file_extension}} files.
+     * Add document renderer for {{cookiecutter.file_extension}} files
      */
     const options = {
       fileExtensions: EXTENSIONS,
@@ -55,6 +53,9 @@ function activatePlugin(app, rendermime, registry) {
   }
 }
 
+/**
+ * Configure jupyterlab plugin
+ */
 const Plugin = {
   id: 'jupyter.extensions.{{cookiecutter.mime_short_name}}',
   requires: '{{cookiecutter.file_extension}}'
