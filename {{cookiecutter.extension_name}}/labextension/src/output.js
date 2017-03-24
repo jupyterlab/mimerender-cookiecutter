@@ -1,8 +1,6 @@
 import { Widget } from '@phosphor/widgets';
 
-/**
- * The class name added to this OutputWidget.
- */
+const MIME_TYPE = '{{cookiecutter.mime_type}}';
 const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 
 /**
@@ -11,6 +9,9 @@ const CLASS_NAME = 'jp-OutputWidget{{cookiecutter.mime_short_name}}';
 export class OutputWidget extends Widget {
   constructor(options) {
     super();
+    this._mimeType = options.mimeType;
+    this._data = options.model.data;
+    this._metadata = options.model.metadata;
     this.addClass(CLASS_NAME);
   }
 
@@ -58,10 +59,10 @@ export class OutputWidget extends Widget {
    * Render data to DOM node
    */
   _render() {
-    const text = document.createTextNode(JSON.stringify(this._data));
+    const data = this._data.get(this._mimeType);
+    const metadata = this._metadata.get(this._mimeType);
+    const text = document.createTextNode(JSON.stringify(data));
     this.node.appendChild(text);
-    // // Inject static HTML into mime bundle
-    // this._data.set('text/html', renderStaticHTML(this._data))
   }
 }
 
@@ -69,7 +70,7 @@ export class OutputRenderer {
   /**
    * The mime types that this OutputRenderer accepts
    */
-  mimeTypes = ['{{cookiecutter.mime_type}}'];
+  mimeTypes = [MIME_TYPE];
 
   /**
    * Whether the renderer can render given the render options

@@ -4,14 +4,14 @@
 */
 
 .jp-OutputWidget{{cookiecutter.mime_short_name}}, .jp-DocWidget{{cookiecutter.mime_short_name}} {
-  padding: 5px 0;
-}
-
-.jp-OutputWidget{{cookiecutter.mime_short_name}} {
   
 }
 
+.jp-OutputWidget{{cookiecutter.mime_short_name}} {
+  padding-top: 5px;
+}
+
 .jp-DocWidget{{cookiecutter.mime_short_name}} {
-  padding: 5px;
+  padding: 0;
   overflow: auto;
 }

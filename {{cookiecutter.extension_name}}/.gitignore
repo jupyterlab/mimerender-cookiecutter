@@ -1,7 +1,7 @@
 labextension/lib/
 nbextension/lib/
 nbextension/embed/
-*/node_modules/
+node_modules/
 npm-debug.log
 *.egg-info/
 build/
