@@ -1,5 +1,5 @@
-import { IRenderMime } from 'jupyterlab/lib/rendermime';
-import { IDocumentRegistry } from 'jupyterlab/lib/docregistry';
+import { IRenderMime } from '@jupyterlab/rendermime';
+import { IDocumentRegistry } from '@jupyterlab/docregistry';
 import { toArray, ArrayExt } from '@phosphor/algorithm';
 import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';

@@ -1,6 +1,7 @@
 import { Widget } from '@phosphor/widgets';
-import { ABCWidgetFactory } from 'jupyterlab/lib/docregistry';
-import { ActivityMonitor } from 'jupyterlab/lib/common/activitymonitor';
+import { ABCWidgetFactory } from '@jupyterlab/docregistry';
+import { ActivityMonitor } from '@jupyterlab/coreutils';
+import { runMode } from '@jupyterlab/codemirror';
 
 /**
  * The class name added to a DocWidget.
