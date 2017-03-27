@@ -1,8 +1,9 @@
 from setuptools import setup
 from setupbase import create_cmdclass, install_npm
 
-cmdclass = create_cmdclass(['js'])
-cmdclass['js'] = install_npm()
+cmdclass = create_cmdclass(['labextension', 'nbextension'])
+cmdclass['labextension'] = install_npm('labextension')
+cmdclass['nbextension'] = install_npm('nbextension')
 
 setup_args = dict(
     name                 = '{{cookiecutter.extension_name}}',
