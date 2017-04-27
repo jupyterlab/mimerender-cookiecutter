@@ -3,7 +3,7 @@ import { IDocumentRegistry } from '@jupyterlab/docregistry';
 import { toArray, ArrayExt } from '@phosphor/algorithm';
 import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';
-import './index.css';
+import '../index.css';
 
 /**
  * Activate the extension.

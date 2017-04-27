@@ -46,12 +46,7 @@ function handleAddOutput(event,  { output, output_area }) {
  * Register the mime type and append_mime function with the notebook's 
  * output area
  */
-export function register_renderer(notebook) {
-  /* Get an instance of output_area from a CodeCell instance */
-  const { output_area } = notebook
-    .get_cells()
-    .reduce((result, cell) => cell.output_area ? cell : result, {});
-
+export function register_renderer(notebook, events, OutputArea) {
   /* A function to render output of '{{cookiecutter.mime_type}}' mime type */
   const append_mime = function(data, metadata, element) {
     /* Create a DOM node to render to */
@@ -69,10 +64,10 @@ export function register_renderer(notebook) {
   };
 
   /* Handle when an output is cleared or removed */
-  output_area.events.on('clear_output.CodeCell', handleClearOutput);
+  events.on('clear_output.CodeCell', handleClearOutput);
 
   /* Handle when a new output is added */
-  output_area.events.on('output_added.OutputArea', handleAddOutput);
+  events.on('output_added.OutputArea', handleAddOutput);
 
   /**
    * Calculate the index of this renderer in `output_area.display_order`
@@ -89,7 +84,7 @@ export function register_renderer(notebook) {
   /**
    * Register the mime type and append_mim function with output_area
    */
-  output_area.register_mime_type(MIME_TYPE, append_mime, {
+  OutputArea.prototype.register_mime_type(MIME_TYPE, append_mime, {
     /* Is output safe? */
     safe: true,
     /* Index of renderer in `output_area.display_order` */

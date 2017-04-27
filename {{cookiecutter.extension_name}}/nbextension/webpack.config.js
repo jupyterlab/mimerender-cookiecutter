@@ -42,7 +42,12 @@ var base = {
   },
   devtool: 'source-map',
   module: { loaders },
-  externals: ['$']
+  externals: [
+    'nbextensions/{{cookiecutter.extension_name}}/index',
+    'base/js/namespace',
+    'base/js/events',
+    'notebook/js/outputarea'
+  ]
 };
 
 module.exports = [
@@ -65,12 +70,7 @@ module.exports = [
         '{{cookiecutter.extension_name}}',
         'static'
       )
-    }),
-    externals: [
-      'nbextensions/{{cookiecutter.extension_name}}/index',
-      'base/js/namespace',
-      '$'
-    ]
+    })
   }),
   /**
    * Bundle for the notebook containing the custom widget views and models

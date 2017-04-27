@@ -7,7 +7,7 @@ cmdclass['nbextension'] = install_npm('nbextension')
 
 setup_args = dict(
     name                 = '{{cookiecutter.extension_name}}',
-    version              = '0.18.0',
+    version              = '0.20.2',
     packages             = ['{{cookiecutter.extension_name}}'],
     author               = '{{cookiecutter.author_name}}',
     author_email         = '{{cookiecutter.author_email}}',
@@ -29,7 +29,7 @@ setup_args = dict(
     ],
     cmdclass             = cmdclass,
     install_requires     = [
-        'jupyterlab>=0.18.0',
+        'jupyterlab>=0.20.2',
         'notebook>=4.3.0',
         'ipython>=1.0.0'
     ]
