@@ -33,8 +33,7 @@ To render a `.{{cookiecutter.file_extension}}` file as a tree, simply open it:
 
 ```bash
 # For JupyterLab
-jupyter labextension install --py --sys-prefix {{cookiecutter.extension_name}}
-jupyter labextension enable --py --sys-prefix {{cookiecutter.extension_name}}
+jupyter labextension install {{cookiecutter.extension_name}}
 # For Notebook
 pip install {{cookiecutter.extension_name}}
 jupyter nbextension install --py --sys-prefix {{cookiecutter.extension_name}}
@@ -48,7 +47,6 @@ pip install -e .
 # For JupyterLab
 cd labextension
 jupyter labextension link .
-jupyter labextension enable --py --sys-prefix {{cookiecutter.extension_name}}
 # For Notebook
 jupyter nbextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}
 jupyter nbextension enable --py --sys-prefix {{cookiecutter.extension_name}}

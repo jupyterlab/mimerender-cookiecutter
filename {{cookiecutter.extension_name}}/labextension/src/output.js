@@ -24,7 +24,7 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'before-detach'` message
+   * A message handler invoked on a `'before-detach'` message
    */
   onBeforeDetach(msg) {
     /* Dispose of resources used by this widget */
@@ -32,7 +32,7 @@ export class OutputWidget extends Widget {
   }
 
   /**
-   * A message handler invoked on an `'child-added'` message
+   * A message handler invoked on a `'child-added'` message
    */
   onChildAdded(msg) {
     /* e.g. Inject a static image representation into the mime bundle for
@@ -48,20 +48,21 @@ export class OutputWidget extends Widget {
    * A message handler invoked on a `'resize'` message
    */
   onResize(msg) {
-    /* Update tracked widget and height values */
-    this._width = msg.width;
-    this._height = msg.height;
     /* Re-render on resize */
-    this.update();
+    this._render();
   }
 
   /**
    * Render data to DOM node
    */
   _render() {
-    const data = this._data.get(this._mimeType);
-    const metadata = this._metadata.get(this._mimeType);
-    const text = document.createTextNode(JSON.stringify(data));
+    const props = {
+      data: this._data.get(this._mimeType),
+      metadata: this._metadata.get(this._mimeType),
+      width: this.node.offsetWidth,
+      height: this.node.offsetHeight
+    };
+    const text = document.createTextNode(JSON.stringify(props));
     this.node.appendChild(text);
   }
 }

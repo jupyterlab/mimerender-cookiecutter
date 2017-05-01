@@ -19,12 +19,10 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
+    "prepublishOnly": "npm run build",
     "watch": "watch \"npm run build\" src --wait 10 --ignoreDotFiles",
-    "prepublish": "npm run build",
-    "extension:install": "jupyter labextension install --symlink --py --sys-prefix {{cookiecutter.extension_name}}",
-    "extension:uninstall": "jupyter labextension uninstall --py --sys-prefix {{cookiecutter.extension_name}}",
-    "extension:enable": "jupyter labextension enable --py --sys-prefix {{cookiecutter.extension_name}}",
-    "extension:disable": "jupyter labextension disable --py --sys-prefix {{cookiecutter.extension_name}}"
+    "extension:install": "jupyter labextension link .",
+    "extension:uninstall": "jupyter labextension unlink ."
   },
   "dependencies": {
     "@jupyterlab/apputils": "^0.3.1",
