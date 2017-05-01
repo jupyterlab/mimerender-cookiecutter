@@ -1,14 +1,26 @@
 import { IRenderMime } from '@jupyterlab/rendermime';
 import { IDocumentRegistry } from '@jupyterlab/docregistry';
+import { ILayoutRestorer, InstanceTracker } from '@jupyterlab/apputils';
 import { toArray, ArrayExt } from '@phosphor/algorithm';
 import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';
-import './index.css';
+import '../index.css';
+
+/**
+ * The name of the factory
+ */
+const FACTORY = '{{cookiecutter.mime_short_name}}';
+
+/**
+ * Set the extensions associated with {{cookiecutter.mime_type}}
+ */
+const EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
+const DEFAULT_EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
 
 /**
  * Activate the extension.
  */
-function activatePlugin(app, rendermime, registry) {
+function activatePlugin(app, rendermime, registry, restorer) {
   /**
    * Calculate the index of the renderer in the array renderers
    * e.g. Insert this renderer after any renderers with mime type that matches 
@@ -22,7 +34,7 @@ function activatePlugin(app, rendermime, registry) {
   const index = 0;
 
   /**
-   * Add mime type renderer for {{cookiecutter.mime_type}}
+   * Add output renderer for {{cookiecutter.mime_type}} data
    */
   rendermime.addRenderer(
     {
@@ -32,25 +44,41 @@ function activatePlugin(app, rendermime, registry) {
     index
   );
 
-  if ('{{cookiecutter.file_extension}}') {
-    const EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
-    const DEFAULT_EXTENSIONS = ['.{{cookiecutter.file_extension}}'];
+  const factory = new DocWidgetFactory({
+    fileExtensions: EXTENSIONS,
+    defaultFor: DEFAULT_EXTENSIONS,
+    name: FACTORY
+  });
 
-    /**
-     * Add document renderer for {{cookiecutter.file_extension}} files
-     */
-    const options = {
-      fileExtensions: EXTENSIONS,
-      defaultFor: DEFAULT_EXTENSIONS,
-      name: '{{cookiecutter.mime_short_name}}',
-      displayName: '{{cookiecutter.mime_short_name}}',
-      modelName: 'text',
-      preferKernel: false,
-      canStartKernel: false
-    };
+  /**
+   * Add document renderer for .{{cookiecutter.file_extension}} files
+   */
+  registry.addWidgetFactory(factory);
 
-    registry.addWidgetFactory(new DocWidgetFactory(options));
-  }
+  const tracker = new InstanceTracker({
+    namespace: '{{cookiecutter.mime_short_name}}',
+    shell: app.shell
+  });
+
+  /**
+   * Handle widget state deserialization
+   */
+  restorer.restore(tracker, {
+    command: 'file-operations:open',
+    args: widget => ({ path: widget.context.path, factory: FACTORY }),
+    name: widget => widget.context.path
+  });
+
+  /**
+   * Serialize widget state
+   */
+  factory.widgetCreated.connect((sender, widget) => {
+    tracker.add(widget);
+    /* Notify the instance tracker if restore data needs to update */
+    widget.context.pathChanged.connect(() => {
+      tracker.save(widget);
+    });
+  });
 }
 
 /**
@@ -58,9 +86,7 @@ function activatePlugin(app, rendermime, registry) {
  */
 const Plugin = {
   id: 'jupyter.extensions.{{cookiecutter.mime_short_name}}',
-  requires: '{{cookiecutter.file_extension}}'
-    ? [IRenderMime, IDocumentRegistry]
-    : [IRenderMime],
+  requires: [IRenderMime, IDocumentRegistry, ILayoutRestorer],
   activate: activatePlugin,
   autoStart: true
 };

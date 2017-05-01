@@ -7,14 +7,20 @@ cmdclass['nbextension'] = install_npm('nbextension')
 
 setup_args = dict(
     name                 = '{{cookiecutter.extension_name}}',
-    version              = '0.18.0',
+    version              = '0.20.2',
     packages             = ['{{cookiecutter.extension_name}}'],
     author               = '{{cookiecutter.author_name}}',
     author_email         = '{{cookiecutter.author_email}}',
     url                  = 'http://jupyter.org',
     license              = 'BSD',
     platforms            = "Linux, Mac OS X, Windows",
-    keywords             = ['ipython', 'jupyter'],
+    keywords             = [
+        'ipython', 
+        'jupyter', 
+        'jupyterlab', 
+        'extension', 
+        'renderer'
+    ],
     classifiers          = [
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
@@ -29,7 +35,7 @@ setup_args = dict(
     ],
     cmdclass             = cmdclass,
     install_requires     = [
-        'jupyterlab>=0.18.0',
+        'jupyterlab>=0.20.2',
         'notebook>=4.3.0',
         'ipython>=1.0.0'
     ]

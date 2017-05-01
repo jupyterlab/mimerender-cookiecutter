@@ -1,4 +1,4 @@
-import './index.css';
+import '../index.css';
 
 const MIME_TYPE = '{{cookiecutter.mime_type}}';
 const CLASS_NAME = 'output_{{cookiecutter.mime_short_name}} rendered_html';
@@ -16,21 +16,21 @@ function render(props, node) {
  */
 function handleClearOutput(event, { cell: { output_area } }) {
   /* Get rendered DOM node */
-  const toinsert = output_area.element.find(CLASS_NAME.split(' ')[0]);
+  const toinsert = output_area.element.find(`.${CLASS_NAME.split(' ')[0]}`);
   /* e.g. Dispose of resources used by renderer library */
-  // if (toinsert) renderLibrary.dispose(toinsert[0]);
+  // if (toinsert[0]) renderLibrary.dispose(toinsert[0]);
 }
 
 /**
  * Handle when a new output is added
  */
-function handleAddOutput(event,  { output, output_area }) {
+function handleAddOutput(event, { output, output_area }) {
   /* Get rendered DOM node */
-  const toinsert = output_area.element.find(CLASS_NAME.split(' ')[0]);
+  const toinsert = output_area.element.find(`.${CLASS_NAME.split(' ')[0]}`);
   /** e.g. Inject a static image representation into the mime bundle for
-   *  endering on Github, etc.
+   *  rendering on Github, etc.
    */
-  // if (toinsert) {
+  // if (toinsert[0]) {
   //   renderLibrary.toPng(toinsert[0]).then(url => {
   //     const data = url.split(',')[1];
   //     output_area.outputs
@@ -46,12 +46,7 @@ function handleAddOutput(event,  { output, output_area }) {
  * Register the mime type and append_mime function with the notebook's 
  * output area
  */
-export function register_renderer(notebook) {
-  /* Get an instance of output_area from a CodeCell instance */
-  const { output_area } = notebook
-    .get_cells()
-    .reduce((result, cell) => cell.output_area ? cell : result, {});
-
+export function register_renderer(notebook, events, OutputArea) {
   /* A function to render output of '{{cookiecutter.mime_type}}' mime type */
   const append_mime = function(data, metadata, element) {
     /* Create a DOM node to render to */
@@ -62,17 +57,23 @@ export function register_renderer(notebook) {
     );
     this.keyboard_manager.register_events(toinsert);
     /* Render data to DOM node */
-    const props = { data, metadata: metadata[MIME_TYPE] };
+    const props = {
+      data,
+      metadata: metadata[MIME_TYPE],
+      width: this.element.width(),
+      height: this.element.height() || DEFAULT_HEIGHT,
+    };
     render(props, toinsert[0]);
     element.append(toinsert);
     return toinsert;
   };
 
   /* Handle when an output is cleared or removed */
-  output_area.events.on('clear_output.CodeCell', handleClearOutput);
+  events.on('clear_output.CodeCell', handleClearOutput);
+  events.on('delete.Cell', handleClearOutput);
 
   /* Handle when a new output is added */
-  output_area.events.on('output_added.OutputArea', handleAddOutput);
+  events.on('output_added.OutputArea', handleAddOutput);
 
   /**
    * Calculate the index of this renderer in `output_area.display_order`
@@ -87,9 +88,9 @@ export function register_renderer(notebook) {
   const index = 0;
 
   /**
-   * Register the mime type and append_mim function with output_area
+   * Register the mime type and append_mime function with output_area
    */
-  output_area.register_mime_type(MIME_TYPE, append_mime, {
+  OutputArea.prototype.register_mime_type(MIME_TYPE, append_mime, {
     /* Is output safe? */
     safe: true,
     /* Index of renderer in `output_area.display_order` */
@@ -99,6 +100,7 @@ export function register_renderer(notebook) {
 
 /**
  * Re-render cells with output data of '{{cookiecutter.mime_type}}' mime type
+ * on load notebook
  */
 export function render_cells(notebook) {
   /* Get all cells in notebook */

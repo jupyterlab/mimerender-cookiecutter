@@ -1,0 +1,33 @@
+.jp-OutputWidget{{cookiecutter.mime_short_name}}, .jp-DocWidget{{cookiecutter.mime_short_name}} {
+  width: 100%;
+  padding: 0;
+}
+
+.jp-OutputWidget{{cookiecutter.mime_short_name}} {
+  margin-top: 5px;
+  max-height: 360px;
+}
+
+.jp-DocWidget{{cookiecutter.mime_short_name}} {
+  overflow: auto;
+}
+
+.jp-DocWidget{{cookiecutter.mime_short_name}} .jp-mod-error {
+  width: 100%;
+  min-height: 100%;
+  text-align: center; 
+  padding: 10px; 
+  box-sizing: border-box;
+}
+
+.jp-DocWidget{{cookiecutter.mime_short_name}} .jp-mod-error h2 {
+  font-size: 18px; 
+  font-weight: 500; 
+  padding-bottom: 10px;
+}
+
+.jp-DocWidget{{cookiecutter.mime_short_name}} .jp-mod-error pre {
+  text-align: left; 
+  padding: 10px; 
+  overflow: hidden;
+}

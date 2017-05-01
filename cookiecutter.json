@@ -4,5 +4,5 @@
     "mime_type": "application/json",
     "file_extension": "json",
     "mime_short_name": "JSON",
-    "extension_name": "jupyterlab_{{ cookiecutter.mime_short_name|lower|replace(' ', '_') }}"
+    "extension_name": "jupyterlab_{{cookiecutter.mime_short_name|lower|replace(' ', '_')}}"
 }
