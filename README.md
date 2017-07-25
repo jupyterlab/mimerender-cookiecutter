@@ -5,14 +5,9 @@ a JupyterLab and Jupyter Notebook extension for rendering specific mime types an
 
 ## Examples
 
-* [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json)
-* [jupyterlab_geojson](https://github.com/jupyterlab/jupyterlab_geojson)
-* [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
-* [jupyterlab_table](https://github.com/gnestor/jupyterlab_table)
-
-## Branches
-
-* [React](https://github.com/jupyterlab/mimerender-cookiecutter/tree/react)
+* [json](hhttps://github.com/jupyterlab/jupyter-renderers/tree/master/packages/json-extension)
+* [geojson](https://github.com/jupyterlab/jupyter-renderers/tree/master/packages/geojson-extension)
+* [plotly](https://github.com/jupyterlab/jupyter-renderers/tree/master/packages/plotly-extension)
 
 ## Usage
 
