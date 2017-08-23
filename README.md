@@ -45,11 +45,8 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
     * `static`: Compiled Javascript for both extensions
     * `__init__.py`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
   * `labextension`: The JupyterLab extension
-    * `src`
-      * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts
-      * `index.css`: CSS styles for extension
-      * `plugin.js`: Entry point for the JupyterLab extension
-      * `output.js`: Widget/widget factory for rendering outputs of `mime_type` defined in prompts
+    * `src/index.ts`: Widget an extension metadata used for opening files with an extension of `file_type` defined in prompts
+    * `style/index.css`: CSS styles for extension
   * `nbextension`: The Jupyter Notebook extension
     * `src`
       * `embed.js`: Entry point for embedded widget

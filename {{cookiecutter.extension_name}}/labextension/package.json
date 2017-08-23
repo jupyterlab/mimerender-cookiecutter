@@ -11,7 +11,7 @@
   ],
   "files": [
     "lib/*.d.ts",
-    "lib/*.ts",
+    "lib/*.js",
     "style/*.css"
   ],
   "jupyterlab": {
