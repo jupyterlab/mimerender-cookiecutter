@@ -37,11 +37,11 @@ from setupbase import (create_cmdclass, install_npm, ensure_targets,
     combine_commands, expand_data_files)
 
 here = os.path.abspath(os.path.dirname(__file__))
-static = pjoin(here, name, 'nbextension', 'static')
+static = pjoin(here, name, 'static')
 
 # Representative files that should exist after a successful build
 jstargets = [
-    pjoin(here, name, 'nbextension', 'static', 'extension.js'),
+    pjoin(static, 'extension.js'),
     pjoin(here, 'lib', 'plugin.js'),
 ]
 
@@ -59,7 +59,7 @@ cmdclass['jsdeps'] = combine_commands(
 
 package_data = {
     name: [
-        'nbextension/static/*.*js*',
+        'static/*.*js*',
         '*.tgz'
     ]
 }
