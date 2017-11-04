@@ -11,7 +11,8 @@ before_install:
   - nvm install 6
   - pip install cookiecutter
 install:
-  - cookiecutter . --no-input
+  - pushd $(mktemp -d)
+  - cookiecutter $TRAVIS_BUILD_DIR --no-input
   - pushd json_renderer
   - pip install -U -v -e .
   - pip uninstall -y json_renderer
