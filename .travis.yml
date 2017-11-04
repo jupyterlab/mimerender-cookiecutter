@@ -13,16 +13,12 @@ before_install:
 install:
   - cookiecutter . --no-input
   - pushd json_renderer
-  - pip install --upgrade -v -e .
+  - pip install -v .
 before_script:
   - |
     export DISPLAY=:99.0
     sh -e /etc/init.d/xvfb start
 script:
-  - ls /home/travis/virtualenv/python3.6.3/share/jupyter/lab/extensions
-  - ls /home/travis/virtualenv/python3.6.3/share/jupyter/nbextensions/json_renderer
-  - pip uninstall -y json_renderer
-  - pip install .
   - jupyter nbextension enable --py --sys-prefix json_renderer
   - jupyter nbextension list
   - pip install jupyterlab
