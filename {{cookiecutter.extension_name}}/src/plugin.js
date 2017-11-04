@@ -56,6 +56,7 @@ const extension = {
   rendererFactory,
   rank: 0,
   dataType: 'json',
+{%- if cookiecutter.use_file_type == "yes" -%}
   documentWidgetFactoryOptions: {
     name: '{{cookiecutter.mime_short_name}}',
     primaryFileType: '{{cookiecutter.file_type}}',
@@ -63,6 +64,7 @@ const extension = {
     defaultFor: []
   },
   fileTypes: []
+{% endif %}
 };
 
 export default extension;
