@@ -25,4 +25,3 @@ script:
   - jupyter labextension list 2>&1 | grep -q json_renderer
   - jupyter labextension link
   - popd
-  - popd
