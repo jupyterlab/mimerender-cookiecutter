@@ -28,6 +28,7 @@ if v[:2] < (3, 3):
 
 import io
 import os
+from os.path import join as pjoin
 from glob import glob
 
 from setuptools import setup, find_packages
@@ -35,15 +36,13 @@ from setuptools import setup, find_packages
 from setupbase import (create_cmdclass, install_npm, ensure_targets,
     combine_commands, expand_data_files)
 
-pjoin = os.path.join
 here = os.path.abspath(os.path.dirname(__file__))
-static = os.path.join(here, name, 'nbextension', 'static')
-tar_path = os.path.join(here, name, '*.tgz')
+static = pjoin(here, name, 'nbextension', 'static')
 
 # Representative files that should exist after a successful build
 jstargets = [
-    os.path.join(here, name, 'nbextension', 'static', 'extension.js'),
-    os.path.join(here, 'lib', 'plugin.js'),
+    pjoin(here, name, 'nbextension', 'static', 'extension.js'),
+    pjoin(here, 'lib', 'plugin.js'),
 ]
 
 version_ns = {}
@@ -67,7 +66,7 @@ package_data = {
 
 data_files = expand_data_files([
     ('share/jupyter/nbextensions/{{ cookiecutter.extension_name }}', pjoin(static, '*.js*')),
-    ('share/jupyter/lab/extensions', tar_path)
+    ('share/jupyter/lab/extensions', pjoin(here, name, '*.tgz'))
 ])
 
 
@@ -98,7 +97,6 @@ setup_args = dict(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    cmdclass             = cmdclass,
     install_requires     = [
         'notebook>=4.3.0',
         'ipython>=1.0.0'
