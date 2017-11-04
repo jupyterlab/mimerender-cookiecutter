@@ -84,16 +84,5 @@ module.exports = [
         'static'
       )
     })
-  }),
-  /**
-   * This bundle compiles the lab extension.
-   */
-  Object.assign({}, base, {
-    entry: path.join(__dirname, 'src', 'plugin.js'),
-    output: Object.assign({}, base.output, {
-      filename: 'plugin.js',
-      path: path.join(__dirname, 'lib'),
-      libraryTarget: "commonjs2"
-    })
   })
 ];

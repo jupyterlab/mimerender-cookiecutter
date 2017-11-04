@@ -4,7 +4,7 @@ This document guides an extension maintainer through creating and publishing a r
 
 ## Update version number
 
-Update the version number in `setup.py`, `labextension/package.json`, and `nbextension/package.json`.
+Update the version number in `_version.py`, and `package.json`.
 
 Commit your changes, add git tag for this version, and push both commit and tag to your origin/remote repo.
 
@@ -21,7 +21,6 @@ git clean -xfd
 Build the Javascript extension bundle, then build the Python package and wheel:
 
 ```bash
-bash build.js
 python setup.py sdist
 python setup.py bdist_wheel --universal
 ```

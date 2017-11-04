@@ -1,0 +1,29 @@
+language: python
+python:
+  - 3.6
+sudo: false
+cache:
+  pip: true
+  directories:
+    - $HOME/.npm
+before_install:
+  - pip install -U pip setuptools
+  - nvm install 6
+  - pip install cookiecutter
+install:
+  - pushd $(mktemp -d)
+  - cookiecutter . --no-input
+  - pushd json_renderer
+  - pip install .
+before_script:
+  - |
+    export DISPLAY=:99.0
+    sh -e /etc/init.d/xvfb start
+script:
+  - jupyter nbextension enable --py --sys-prefix json_renderer
+  - pip install jupyterlab
+  - jupyter labextension list
+  - jupyter labextension list 2>&1 | grep -q json_renderer
+  - jupyter labextension link
+  - popd
+  - popd
