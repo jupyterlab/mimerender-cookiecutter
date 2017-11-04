@@ -13,7 +13,7 @@ before_install:
 install:
   - cookiecutter . --no-input
   - pushd json_renderer
-  - pip install -v .
+  - pip install --upgrade -v .
 before_script:
   - |
     export DISPLAY=:99.0
