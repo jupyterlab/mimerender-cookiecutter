@@ -5,14 +5,9 @@ a JupyterLab and Jupyter Notebook extension for rendering specific mime types an
 
 ## Examples
 
-* [jupyterlab_json](https://github.com/jupyterlab/jupyterlab_json)
-* [jupyterlab_geojson](https://github.com/jupyterlab/jupyterlab_geojson)
-* [jupyterlab_plotly](https://github.com/gnestor/jupyterlab_plotly)
-* [jupyterlab_table](https://github.com/gnestor/jupyterlab_table)
-
-## Branches
-
-* [React](https://github.com/jupyterlab/mimerender-cookiecutter/tree/react)
+* [jupyterlab_json](https://github.com/jupyterlab/jupyter-renderers)
+* [jupyterlab_geojson](https://github.com/jupyterlab/jupyter-renderers)
+* [jupyterlab_plotly](https://github.com/jupyterlab/jupyter-renderers)
 
 ## Usage
 
@@ -36,8 +31,9 @@ The cookiecutter will prompt you with the following questions and generate a pro
 * `author_email`: Your email address. This will be used in the generated Python and npm packages.
 * `mime_type`: A valid mime type (e.g. `application/json`, `application/geo+json`). This will be used to render output data of this mime type with your extension.
 * `mime_short_name`: A display name (no spaces) for your mime type (e.g. `JSON`, `GeoJSON`). This will be used in the generated Python and npm packages, README, and class names.
-* `file_extension`: **_OPTIONAL_** A valid file extension (e.g. `json`, `geojson`). This will be used to open files of this type with your extension.
-* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_geojson`).
+* `file_type`: **_OPTIONAL_** A valid file type (e.g. `json`, `geojson`). This will be used to open files of this type with your extension.
+* `extension_name`: Your JupyterLab and Jupyter Notebook extension name (e.g. `jupyerlab_json`, `jupyerlab_geojson`).  If not using this option remove the
+`documentWidgetFactoryOptions` and `fileTypes` from `src/plugin.js`.
 
 ## Project structure
 
@@ -47,20 +43,14 @@ In most cases, you will only need to edit the `OutputWidget._render` method in `
 
 * `extension_name`
   * `extension_name`: The Python package
-    * `static`: Compiled Javascript for both extensions
+    * `static`: Compiled Javascript for the notebook extension.
     * `__init__.py`: Exports paths and metadata of lab and notebook extensions and exports an optional `display` method that can be imported into a notebook and used to easily display data using this renderer
-  * `labextension`: The JupyterLab extension
-    * `src`
-      * `doc.js`: Widget/widget factory used for opening files with an extension of `file_extension` defined in prompts
-      * `index.css`: CSS styles for extension
-      * `plugin.js`: Entry point for the JupyterLab extension
-      * `output.js`: Widget/widget factory for rendering outputs of `mime_type` defined in prompts
-  * `nbextension`: The Jupyter Notebook extension
-    * `src`
-      * `embed.js`: Entry point for embedded widget
-      * `extension.js`: Integration point with Jupyter Notebook
-      * `index.js`: Entry point for the Jupyter Notebook extension
-      * `renderer.js`: Methods for rendering output data of `mime_type` defined in prompts
+  * `src` - The extension source.
+    * `embed.js`: Entry point for embedded widget
+    * `extension.js`: Integration point with Jupyter Notebook
+    * `index.js`: Entry point for the Jupyter Notebook extension
+    * `plugin.js`: Entry point for the JupyterLab extension
+    * `renderer.js`: Methods for rendering output data of `mime_type` defined in prompts
 
 ## Workflow
 
