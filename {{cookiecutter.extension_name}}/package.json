@@ -1,0 +1,33 @@
+{
+  "name": "{{cookiecutter.extension_name}}",
+  "version": "0.1.0",
+  "description": "A package for rendering {{cookiecutter.mime_short_name}} in Jupyter",
+  "author": "{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>",
+  "main": "lib/index.js",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab extension"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "prepack": "npm run build",
+    "watch": "webpack --watch"
+  },
+  "jupyterlab": {
+    "mimeExtension": "lib/plugin"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.4.0",
+    "babel-preset-latest": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "watch": "^1.0.1",
+    "webpack": "^2.2.0"
+  }
+}

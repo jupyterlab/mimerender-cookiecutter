@@ -1,4 +1,4 @@
-import './index.css';
+import '../style/index.css';
 
 const MIME_TYPE = '{{cookiecutter.mime_type}}';
 const CLASS_NAME = 'output_{{cookiecutter.mime_short_name}} rendered_html';
@@ -43,7 +43,7 @@ function handleAddOutput(event,  { output, output_area }) {
 }
 
 /**
- * Register the mime type and append_mime function with the notebook's 
+ * Register the mime type and append_mime function with the notebook's
  * output area
  */
 export function register_renderer(notebook) {
@@ -76,7 +76,7 @@ export function register_renderer(notebook) {
 
   /**
    * Calculate the index of this renderer in `output_area.display_order`
-   * e.g. Insert this renderer after any renderers with mime type that matches 
+   * e.g. Insert this renderer after any renderers with mime type that matches
    * "+json"
    */
   // const mime_types = output_area.mime_types();
