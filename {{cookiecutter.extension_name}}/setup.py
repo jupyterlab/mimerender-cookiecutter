@@ -66,13 +66,13 @@ package_data = {
 }
 
 data_files = expand_data_files([
-    ('share/jupyter/nbextensions/{{ cookiecutter.npm_package_name }}', pjoin(static, '*.js*')),
+    ('share/jupyter/nbextensions/{{ cookiecutter.extension_name }}', pjoin(static, '*.js*')),
     ('share/jupyter/lab/extensions', tar_path)
 ])
 
 
 setup_args = dict(
-    description     = '{{ cookiecutter.project_short_description }}',
+    name            = name,
     version         = version_ns['__version__'],
     scripts         = glob(pjoin('scripts', '*')),
     cmdclass        = cmdclass,
