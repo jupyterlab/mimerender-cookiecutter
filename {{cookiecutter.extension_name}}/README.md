@@ -25,9 +25,11 @@ from {{cookiecutter.extension_name}} import {{cookiecutter.mime_short_name}}
 })
 ```
 
+{%- if cookiecutter.use_file_type == "yes" -%}
 To render a `.{{cookiecutter.file_type}}` file as a tree, simply open it:
 
 ![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
+{% endif %}
 
 ## Install
 
