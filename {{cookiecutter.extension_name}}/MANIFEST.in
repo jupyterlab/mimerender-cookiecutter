@@ -1,2 +1,2 @@
-graft {{cookiecutter.extension_name}}/static
-include {{cookiecutter.extension_name}}/*.tgz
+graft {{cookiecutter.extension_name}}/nbextension
+include {{cookiecutter.extension_name}}/labextension/*.tgz
