@@ -61,7 +61,7 @@ module.exports = [
       path: path.join(
         __dirname,
         '{{cookiecutter.extension_name}}',
-        'static'
+        'nbextension'
       )
     }),
     externals: [
@@ -81,7 +81,7 @@ module.exports = [
       path: path.join(
         __dirname,
         '{{cookiecutter.extension_name}}',
-        'static'
+        'nbextension'
       )
     })
   })
