@@ -1,5 +1,2 @@
-graft {{cookiecutter.extension_name}}/static
-graft labextension/src
-graft nbextension/src
-include labextension/package.json
-include nbextension/package.json
+graft {{cookiecutter.extension_name}}/nbextension
+include {{cookiecutter.extension_name}}/labextension/*.tgz

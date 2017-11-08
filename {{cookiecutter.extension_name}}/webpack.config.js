@@ -42,13 +42,12 @@ var base = {
   },
   devtool: 'source-map',
   module: { loaders },
-  externals: ['$']
 };
 
 module.exports = [
   /**
    * Notebook extension
-   * 
+   *
    * This bundle only contains the part of the JavaScript that is run on
    * load of the notebook. This section generally only performs
    * some configuration for requirejs, and provides the legacy
@@ -61,23 +60,18 @@ module.exports = [
       filename: 'extension.js',
       path: path.join(
         __dirname,
-        '..',
         '{{cookiecutter.extension_name}}',
-        'static'
+        'nbextension'
       )
     }),
     externals: [
       'nbextensions/{{cookiecutter.extension_name}}/index',
-      'base/js/namespace',
-      '$'
+      'base/js/namespace'
     ]
   }),
   /**
-   * Bundle for the notebook containing the custom widget views and models
-   * 
-   * This bundle contains the implementation for the custom widget views and
-   * custom widget.
-   * 
+   * This bundle contains the implementation of the extension.
+   *
    * It must be an amd module
    */
   Object.assign({}, base, {
@@ -86,35 +80,9 @@ module.exports = [
       filename: 'index.js',
       path: path.join(
         __dirname,
-        '..',
         '{{cookiecutter.extension_name}}',
-        'static'
+        'nbextension'
       )
-    })
-  }),
-  /**
-   * Embeddable {{cookiecutter.extension_name}} bundle
-   * 
-   * This bundle is generally almost identical to the notebook bundle
-   * containing the custom widget views and models.
-   * 
-   * The only difference is in the configuration of the webpack public path
-   * for the static assets.
-   * 
-   * It will be automatically distributed by unpkg to work with the static
-   * widget embedder.
-   * 
-   * The target bundle is always `lib/index.js`, which is the path required
-   * by the custom widget embedder.
-   */
-  Object.assign({}, base, {
-    entry: './src/embed.js',
-    output: Object.assign({}, base.output, {
-      filename: 'index.js',
-      path: path.join(__dirname, 'embed'),
-      publicPath: 'https://unpkg.com/{{cookiecutter.extension_name}}@' +
-        version +
-        '/lib/'
     })
   })
 ];

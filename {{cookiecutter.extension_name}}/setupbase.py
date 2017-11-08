@@ -4,10 +4,19 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
+"""
+This file originates from the 'jupyter-packaging' package, and
+contains a set of useful utilities for including npm packages
+within a Python package.
+"""
+
 import os
 from os.path import join as pjoin
 import functools
 import pipes
+import sys
+from glob import glob
+from subprocess import check_call
 
 from setuptools import Command
 from setuptools.command.build_py import build_py
@@ -15,8 +24,6 @@ from setuptools.command.sdist import sdist
 from setuptools.command.develop import develop
 from setuptools.command.bdist_egg import bdist_egg
 from distutils import log
-from subprocess import check_call
-import sys
 
 try:
     from wheel.bdist_wheel import bdist_wheel
@@ -36,10 +43,10 @@ __version__ = '0.1.0'
 # Top Level Variables
 # ---------------------------------------------------------------------------
 
-
-here = os.path.abspath(os.path.dirname(sys.argv[0]))
+here = os.path.dirname(__file__)
 is_repo = os.path.exists(pjoin(here, '.git'))
 node_modules = pjoin(here, 'node_modules')
+
 npm_path = ':'.join([
     pjoin(here, 'node_modules', '.bin'),
     os.environ.get('PATH', os.defpath),
@@ -57,17 +64,21 @@ else:
 # ---------------------------------------------------------------------------
 
 
-def get_data_files(top):
-    """Get data files"""
+def expand_data_files(data_file_patterns):
+    """Expand data file patterns to a valid data_files spec.
 
+    Parameters
+    -----------
+    data_file_patterns: list(tuple)
+        A list of (directory, glob patterns) for the data file locations.
+        The globs themselves do not recurse.
+    """
     data_files = []
-    ntrim = len(here + os.path.sep)
-
-    for (d, dirs, filenames) in os.walk(top):
-        data_files.append((
-            d[ntrim:],
-            [pjoin(d, f) for f in filenames]
-        ))
+    for (directory, patterns) in data_file_patterns:
+        files = []
+        for p in patterns:
+            files.extend([os.path.relpath(f, here) for f in glob(p)])
+        data_files.append((directory, files))
     return data_files
 
 
@@ -76,24 +87,32 @@ def find_packages(top):
     Find all of the packages.
     """
     packages = []
-    for d, _, _ in os.walk(top):
+    for d, dirs, _ in os.walk(top, followlinks=True):
         if os.path.exists(pjoin(d, '__init__.py')):
-            packages.append(d.replace(os.path.sep, '.'))
+            packages.append(os.path.relpath(d, top).replace(os.path.sep, '.'))
+        elif d != top:
+            # Do not look for packages in subfolders if current is not a package
+            dirs[:] = []
+    return packages
 
 
-def create_cmdclass(wrappers=None, data_dirs=None):
+def update_package_data(distribution):
+    """update build_py options to get package_data changes"""
+    build_py = distribution.get_command_obj('build_py')
+    build_py.finalize_options()
+
+
+def create_cmdclass(wrappers=None):
     """Create a command class with the given optional wrappers.
+
     Parameters
     ----------
     wrappers: list(str), optional
         The cmdclass names to run before running other commands
-    data_dirs: list(str), optional.
-        The directories containing static data.
     """
     egg = bdist_egg if 'bdist_egg' in sys.argv else bdist_egg_disabled
     wrappers = wrappers or []
-    data_dirs = data_dirs or []
-    wrapper = functools.partial(wrap_command, wrappers, data_dirs)
+    wrapper = functools.partial(wrap_command, wrappers)
     cmdclass = dict(
         build_py=wrapper(build_py, strict=is_repo),
         sdist=wrapper(sdist, strict=True),
@@ -121,7 +140,8 @@ def is_stale(target, source):
     """
     if not os.path.exists(target):
         return True
-    return mtime(target) < mtime(source)
+    target_mtime = recursive_mtime(target) or 0
+    return compare_recursive_mtime(source, cutoff=target_mtime)
 
 
 class BaseCommand(Command):
@@ -163,13 +183,58 @@ def combine_commands(*commands):
     return CombinedCommand
 
 
+def compare_recursive_mtime(path, cutoff, newest=True):
+    """Compare the newest/oldest mtime for all files in a directory.
+
+    Cutoff should be another mtime to be compared against. If an mtime that is
+    newer/older than the cutoff is found it will return True.
+    E.g. if newest=True, and a file in path is newer than the cutoff, it will
+    return True.
+    """
+    if os.path.isfile(path):
+        mt = mtime(path)
+        if newest:
+            if mt > cutoff:
+                return True
+        elif mt < cutoff:
+            return True
+    for dirname, _, filenames in os.walk(path, topdown=False):
+        for filename in filenames:
+            mt = mtime(pjoin(dirname, filename))
+            if newest:  # Put outside of loop?
+                if mt > cutoff:
+                    return True
+            elif mt < cutoff:
+                return True
+    return False
+
+
+def recursive_mtime(path, newest=True):
+    """Gets the newest/oldest mtime for all files in a directory."""
+    if os.path.isfile(path):
+        return mtime(path)
+    current_extreme = None
+    for dirname, _, filenames in os.walk(path, topdown=False):
+        for filename in filenames:
+            mt = mtime(pjoin(dirname, filename))
+            if newest:  # Put outside of loop?
+                if mt >= (current_extreme or mt):
+                    current_extreme = mt
+            elif mt <= (current_extreme or mt):
+                current_extreme = mt
+    return current_extreme
+
+
 def mtime(path):
     """shorthand for mtime"""
     return os.stat(path).st_mtime
 
 
-def install_npm(path=None, build_dir=None, source_dir=None, build_cmd='build'):
+def install_npm(path=None, build_dir=None, source_dir=None, build_cmd='build', force=False):
     """Return a Command for managing an npm installation.
+
+    Note: The command is skipped if the `--skip-npm` flag is used.
+
     Parameters
     ----------
     path: str, optional
@@ -197,11 +262,11 @@ def install_npm(path=None, build_dir=None, source_dir=None, build_cmd='build'):
                 log.error("`npm` unavailable.  If you're running this command "
                           "using sudo, make sure `npm` is availble to sudo")
                 return
-            if is_stale(node_modules, pjoin(node_package, 'package.json')):
+            if force or is_stale(node_modules, pjoin(node_package, 'package.json')):
                 log.info('Installing build dependencies with npm.  This may '
                          'take a while...')
                 run(['npm', 'install'], cwd=node_package)
-            if build_dir and source_dir:
+            if build_dir and source_dir and not force:
                 should_build = is_stale(build_dir, source_dir)
             else:
                 should_build = True
@@ -209,6 +274,26 @@ def install_npm(path=None, build_dir=None, source_dir=None, build_cmd='build'):
                 run(['npm', 'run', build_cmd], cwd=node_package)
 
     return NPM
+
+
+def ensure_targets(targets):
+    """Return a Command that checks that certain files exist.
+
+    Raises a ValueError if any of the files are missing.
+
+    Note: The check is skipped if the `--skip-npm` flag is used.
+    """
+
+    class TargetsCheck(BaseCommand):
+        def run(self):
+            if skip_npm:
+                log.info('Skipping target checks')
+                return
+            missing = [t for t in targets if not os.path.exists(t)]
+            if missing:
+                raise ValueError(('missing files: %s' % missing))
+
+    return TargetsCheck
 
 
 # `shutils.which` function copied verbatim from the Python-3.3 source.
@@ -270,8 +355,9 @@ def which(cmd, mode=os.F_OK | os.X_OK, path=None):
 # ---------------------------------------------------------------------------
 
 
-def wrap_command(cmds, data_dirs, cls, strict=True):
+def wrap_command(cmds, cls, strict=True):
     """Wrap a setup command
+
     Parameters
     ----------
     cmds: list(str)
@@ -292,11 +378,8 @@ def wrap_command(cmds, data_dirs, cls, strict=True):
                         pass
 
             result = cls.run(self)
-            data_files = []
-            for dname in data_dirs:
-                data_files.extend(get_data_files(dname))
-            # update data-files in case this created new files
-            self.distribution.data_files = data_files
+            # update package data
+            update_package_data(self.distribution)
             return result
     return WrappedCommand
 
