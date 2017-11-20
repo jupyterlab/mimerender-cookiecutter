@@ -44,7 +44,7 @@ labextension = pjoin(here, name, 'labextension')
 # Representative files that should exist after a successful build
 jstargets = [
     pjoin(nbextension, 'extension.js'),
-    pjoin(here, 'lib', 'plugin.js'),
+    pjoin(here, 'lib', 'lab_extension.js'),
 ]
 
 version_ns = {}
