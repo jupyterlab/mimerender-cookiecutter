@@ -25,7 +25,7 @@
     "plugins": ["transform-class-properties"]
   },
   "jupyterlab": {
-    "mimeExtension": "lib/plugin"
+    "mimeExtension": "lib/lab_extension"
   },
   "dependencies": {},
   "devDependencies": {
