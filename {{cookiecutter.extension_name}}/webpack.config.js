@@ -55,7 +55,7 @@ module.exports = [
    * extension.
    */
   Object.assign({}, base, {
-    entry: path.join(__dirname, 'src', 'extension.js'),
+    entry: path.join(__dirname, 'src', 'nb_extension.js'),
     output: Object.assign({}, base.output, {
       filename: 'extension.js',
       path: path.join(
@@ -75,7 +75,7 @@ module.exports = [
    * It must be an amd module
    */
   Object.assign({}, base, {
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'nb_index.js'),
     output: Object.assign({}, base.output, {
       filename: 'index.js',
       path: path.join(
